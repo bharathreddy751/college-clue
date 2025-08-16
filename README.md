@@ -34,28 +34,28 @@ collegeclue/ # Main project folder<br>
 │-- core/ # Main Django app<br>
 │ │-- api/ # REST API (serializers, views, urls)<br>
 │ │-- migrations/ # Database migrations<br>
-│ │-- templates/ # App-specific templates (account, core, etc.)
-│ │-- templatetags/ # Custom template tags
-│ │-- admin.py # Django admin configuration
-│ │-- apps.py # App configuration
-│ │-- forms.py # Forms used in the app
-│ │-- middleware.py # Custom middleware
-│ │-- models.py # Database models
-│ │-- urls.py # App-level URL routes
-│ │-- views.py # Business logic / views
-│
-│--collegeclue/ # Project configuration
-│ │-- settings.py # Global settings (database, installed apps, etc.)
-│ │-- urls.py # Root URL mappings
-│ │-- asgi.py # ASGI entry point
-│ │-- wsgi.py # WSGI entry point
-│ │-- templates/ # Base/global templates
-│
-│-- static/
-│-- templates/ # Project-level templates
-│-- db.sqlite3 # Default SQLite database (dev only)
-│-- manage.py # Django management script
-│-- importdata.py # Script to import JSON data into DB
-│-- college-clue-default-rtdb-export.json # University data file
-│-- .env # Environment variables (SECRET_KEY, DB, etc.)
-│-- .gitignore # Files and folders ignored by Git
+│ │-- templates/ # App-specific templates (account, core, etc.)<br>
+│ │-- templatetags/ # Custom template tags<br>
+│ │-- admin.py # Django admin configuration<br>
+│ │-- apps.py # App configuration<br>
+│ │-- forms.py # Forms used in the app<br>
+│ │-- middleware.py # Custom middleware<br>
+│ │-- models.py # Database models<br>
+│ │-- urls.py # App-level URL routes<br>
+│ │-- views.py # Business logic / views<br>
+│<br>
+│--collegeclue/ # Project configuration<br>
+│ │-- settings.py # Global settings (database, installed apps, etc.)<br>
+│ │-- urls.py # Root URL mappings<br>
+│ │-- asgi.py # ASGI entry point<br>
+│ │-- wsgi.py # WSGI entry point<br>
+│ │-- templates/ # Base/global templates<br>
+│<br>
+│-- static/<br>
+│-- templates/ # Project-level templates<br>
+│-- db.sqlite3 # Default SQLite database (dev only)<br>
+│-- manage.py # Django management script<br>
+│-- importdata.py # Script to import JSON data into DB<br>
+│-- college-clue-default-rtdb-export.json # University data file<br>
+│-- .env # Environment variables (SECRET_KEY, DB, etc.)<br>
+│-- .gitignore # Files and folders ignored by Git<br>
