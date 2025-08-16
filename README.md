@@ -31,7 +31,7 @@ College Clue is a **centralized admission and accommodation platform** that help
 ## 📂 Project Structure
 
 collegeclue/ # Main project folder
-│-- core/ # Main Django app
+│-- core/ # Main Django app<br>
 │ │-- api/ # REST API (serializers, views, urls)
 │ │-- migrations/ # Database migrations
 │ │-- templates/ # App-specific templates (account, core, etc.)
