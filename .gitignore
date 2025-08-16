@@ -1,0 +1,15 @@
+# virtual environment
+.venv/
+
+# PyCharm settings
+.idea/
+
+# compiled python
+_pycache_/
+*.pyc
+
+# database
+*.sqlite3
+
+# environment variables
+.env
