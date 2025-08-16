@@ -1,0 +1,615 @@
+{
+  "courses": [
+    {
+      "category": "Engineering",
+      "options": [
+        "B.Tech",
+        "Cyber Security",
+        "Data Science/Analytics",
+        "AI and Machine Learning"
+      ]
+    },
+    {
+      "category": "Business & Management",
+      "options": [
+        "BBA",
+        "BMS",
+        "B.Com"
+      ]
+    },
+    {
+      "category": "Arts, Design & Media",
+      "options": [
+        "BA",
+        "BFA",
+        "BJMC"
+      ]
+    },
+    {
+      "category": "Social Sciences & Humanities",
+      "options": [
+        "BSW (Bachelor of Social Work)",
+        "BA in Psychology",
+        "BA in Sociology"
+      ]
+    },
+    {
+      "category": "Law",
+      "options": [
+        "Law (LL.B, LL.M)",
+        "BBA LLB (Bachelor of Business Administration + Bachelor of Law)",
+        "3-Year LLB (if you have a degree already)"
+      ]
+    },
+    {
+      "category": "Masters",
+      "options": [
+        "MBA",
+        "M.Tech"
+      ]
+    }
+  ],
+  "location": [
+    "Bangalore",
+    "Chennai"
+  ],
+  "universities": {
+    "Alliance University": {
+      "Accreditation": "NAAC A+ Accredited",
+      "Alumni": "N/A (No major notable alumni publicly listed)",
+      "Average Salary": "₹6-7 LPA",
+      "Campus Facilities": [
+        "Library",
+        "Gym",
+        "Hostel",
+        "Cafeteria",
+        "Sports Complex"
+      ],
+      "Campus Size": "25 acres",
+      "College Name": "Alliance University",
+      "Courses Offered": [
+        "B.Tech (Various Specializations)",
+        "MBA",
+        "BBA",
+        "B.Com",
+        "M.Tech",
+        "MCA",
+        "Law (LL.B",
+        "LL.M)"
+      ],
+      "Distance to Transport": {
+        "Bus Station": "5-10 min walk",
+        "Kempegowda International Airport": "45-60 min drive",
+        "Metro Station": "25-30 min drive"
+      },
+      "Established Year": "2010",
+      "Financial Aid Available": true,
+      "Graduate Enrollment": "1,500+",
+      "Location": "Bangalore, India",
+      "Nearby Hangout Areas": [
+        "Forum Mall",
+        "Phoenix Marketcity",
+        "Lumbini Gardens",
+        "MG Road"
+      ],
+      "Nearby Paying Guests": [
+        {
+          "Address": "Street 1, Bangalore",
+          "Contact": "9876543210",
+          "Facilities": [
+            "WiFi",
+            "Laundry",
+            "Security",
+            "AC rooms"
+          ],
+          "Food": "Vegetarian meals provided",
+          "Gender": "Male and Female",
+          "Name": "S_PG",
+          "Rent": "5005",
+          "latitude": 12.79273,
+          "longitude": 77.70827,
+          "password": "1234"
+        },
+        {
+          "Address": "Street 2, Bangalore",
+          "Contact": "9876543211",
+          "Facilities": [
+            "WiFi",
+            "Parking",
+            "24/7 Water"
+          ],
+          "Food": "Veg and Non-Veg",
+          "Gender": "Male",
+          "Name": "R_PG",
+          "Rent": "5501",
+          "latitude": 12.7865,
+          "longitude": 77.7023,
+          "password": "1234"
+        }
+      ],
+      "Nearby Restaurants": [
+        "Cafe Coffee Day",
+        "McDonald's",
+        "Barbeque Nation",
+        "The Belgian Waffle Co."
+      ],
+      "Placement Percentage": "~85-90%",
+      "Placement Record": {
+        "Average Salary": "₹6-7 LPA",
+        "Placement Percentage": "~85-90%",
+        "Top Recruiters": [
+          "Amazon",
+          "Cognizant",
+          "Wipro",
+          "Accenture",
+          "IBM",
+          "TCS"
+        ]
+      },
+      "Registrations": {
+        "7": {
+          "aadhar": "",
+          "birthDate": "January 1, 2025",
+          "citizenship": "India",
+          "email": "Bhf",
+          "emergencyPhone": "Dhh",
+          "firstName": "B",
+          "gender": "Male",
+          "languages": "",
+          "lastName": "Reddy",
+          "middleInitial": "Bharath",
+          "phone": "7",
+          "timestamp": 1741004663343
+        },
+        "321": {
+          "aadhar": "",
+          "birthDate": "January 1, 2025",
+          "citizenship": "United States",
+          "email": "21",
+          "emergencyPhone": "321",
+          "firstName": "Ea",
+          "gender": "Male",
+          "languages": "",
+          "lastName": "Dsa",
+          "middleInitial": "Dsa",
+          "phone": "321"
+        },
+        "+91 9390352252": {
+          "aadhar": "1234567890123456",
+          "birthDate": "January 1, 2025",
+          "citizenship": "India",
+          "email": "b@gmail.com",
+          "emergencyPhone": "99665986093",
+          "firstName": "B",
+          "gender": "Male",
+          "languages": "",
+          "lastName": "Reddy",
+          "middleInitial": "Bharath",
+          "phone": "+91 9390352252"
+        }
+      },
+      "Reviews": {
+        "-OJ8N3QFnhIPcyv6Q0EO": {
+          "rating": 5,
+          "text": "Good",
+          "timestamp": 1739619059673,
+          "userName": "Imran"
+        },
+        "-OJ8Z9TJ6F_5VEKBBUBz": {
+          "rating": 5,
+          "text": "Qwertyuioasdfghjkxcvbnm,asdfghjklxcvbnm,sdfghjksxcvbhdcvbhgfcvbnktdcvbnmnbvdsdfghjmxcvbnmdfghjkdfghjkdfghjkdfghjkdfghjkdfghjkdfghjkfghjkfghjklfghjklcvbnm,",
+          "timestamp": 1739622230171,
+          "userName": "A"
+        },
+        "-OJ8f07gGO_OUSpMN6V5": {
+          "rating": 5,
+          "text": "2w3erfd",
+          "timestamp": 1739624026934,
+          "userName": "We’d"
+        },
+        "-OJ8f2WgShcJCqgDcgSl": {
+          "rating": 3,
+          "text": "Ere",
+          "timestamp": 1739624036724,
+          "userName": "23e"
+        },
+        "-OMHVkLlUezY1aHdEQ0z": {
+          "rating": 4,
+          "text": "Good",
+          "timestamp": 1742993557180,
+          "userName": "Bharath"
+        },
+        "-OMHWxq7xWgANVibPsaQ": {
+          "rating": 4,
+          "text": "Good",
+          "timestamp": 1742993874577,
+          "userName": "A"
+        },
+        "-OMHY-ZN6QGvsHOLsPd_": {
+          "rating": 4,
+          "text": "Best",
+          "timestamp": 1742994147859,
+          "userName": "B"
+        }
+      },
+      "Study Abroad Programs": true,
+      "Top Recruiters": [
+        "Amazon",
+        "Cognizant",
+        "Wipro",
+        "Accenture",
+        "IBM",
+        "TCS"
+      ],
+      "Tuition ": "600000",
+      "Type": "Private",
+      "Undergraduate Enrollment": "4,000+",
+      "Website": "https://www.alliance.edu.in",
+      "imageURL": "https://firebasestorage.googleapis.com:443/v0/b/college-clue.firebasestorage.app/o/university_images%2FAlliance%20University%2Fprofile.jpg?alt=media&token=8058b1ac-0fbb-4de6-882a-8d01fbe53c09",
+      "latitude": 12.72973,
+      "longitude": 77.70827,
+      "password": "alliance@123"
+    },
+    "CMR University": {
+      "Accreditation": "NAAC Accredited, Recognized by UGC",
+      "Alumni": "Notable alumni include leaders in various industries and startups.",
+      "Campus Facilities": [
+        "Library",
+        "Gym",
+        "Hostel",
+        "Cafeteria",
+        "Sports Complex",
+        "Auditorium",
+        "Laboratories",
+        "Counseling Center"
+      ],
+      "Campus Size": "60+ acres",
+      "College Name": "CMR University",
+      "Courses Offered": [
+        "B.Tech",
+        "MBA",
+        "BBA",
+        "B.Com",
+        "M.Tech",
+        "MCA",
+        "Ph.D.",
+        "Law (LL.B, LL.M)"
+      ],
+      "Distance to Transport": {
+        "Airport": "50-60 min drive",
+        "Bus Station": "10-15 min walk",
+        "Metro Station": "15-20 min drive"
+      },
+      "Established Year": 2013,
+      "Financial Aid Available": "Yes",
+      "Graduate Enrollment": "3,000+",
+      "Location": "Bangalore, India",
+      "Nearby Paying Guests": [
+        {
+          "Address": "Street 1, Bangalore",
+          "Contact": "9876543210",
+          "Facilities": [
+            "WiFi",
+            "Laundry",
+            "Security",
+            "AC rooms"
+          ],
+          "Food": "Vegetarian meals provided",
+          "Gender": "Male and Female",
+          "Name": "Sam_PG",
+          "Rent": "5000",
+          "latitude": 13.0588,
+          "longitude": 77.6445,
+          "password": "s123"
+        },
+        {
+          "Address": "Street 2, Bangalore",
+          "Contact": "9876543211",
+          "Facilities": [
+            "WiFi",
+            "Parking",
+            "24/7 Water"
+          ],
+          "Food": "Veg and Non-Veg",
+          "Gender": "Male",
+          "Name": "Ram_PG",
+          "Rent": "5500",
+          "latitude": 13.1845,
+          "longitude": 77.5019,
+          "password": "r123"
+        }
+      ],
+      "Nearby Restaurants": [
+        "Domino's",
+        "Subway"
+      ],
+      "Placement Record": {
+        "Average Salary": "₹4-7 LPA",
+        "Placement Percentage": "~90%",
+        "Top Recruiters": [
+          "Infosys",
+          "TCS",
+          "Wipro",
+          "Amazon",
+          "Cognizant",
+          "Capgemini"
+        ]
+      },
+      "Reviews": {
+        "-OJIh-nli9lmwks7Pwxu": {
+          "rating": 5,
+          "text": "Dsa",
+          "timestamp": 1739792322045,
+          "userName": "EWS"
+        },
+        "-OJxCZCypm4ILmEKWjU5": {
+          "rating": 4,
+          "text": "Since",
+          "timestamp": 1740488721678,
+          "userName": "Uday"
+        }
+      },
+      "Study Abroad Programs": "Yes",
+      "Tuition ": "500000",
+      "Type": "Private",
+      "Undergraduate Enrollment": "15,000+",
+      "Website": "https://www.cmr.edu.in",
+      "imageURL": "https://firebasestorage.googleapis.com:443/v0/b/college-clue.firebasestorage.app/o/university_images%2FCMR%20University%2Fprofile.jpg?alt=media&token=f827a03d-cee9-45b2-877b-53cd0035ae95",
+      "latitude": 13.08803,
+      "longitude": 77.62875,
+      "password": "cmr@123"
+    },
+    "Presidency University": {
+      "Accreditation": "NAAC A Accredited",
+      "Alumni": "N/A (No major notable alumni publicly listed)",
+      "Campus Facilities": [
+        "Library",
+        "Gym",
+        "Hostel",
+        "Cafeteria",
+        "Sports Complex",
+        "Auditorium",
+        "Laboratories"
+      ],
+      "Campus Size": "25 acres",
+      "College Name": "Presidency University",
+      "Courses Offered": [
+        "B.Tech (Various Specializations)",
+        "MBA",
+        "B.Com",
+        "M.Tech",
+        "MCA",
+        "Ph.D.",
+        "Law (LL.B, LL.M)"
+      ],
+      "Distance to Transport": {
+        "Bus Station": "5-10 min walk",
+        "Kempegowda International Airport": "40-50 min drive",
+        "Metro Station": "20-25 min drive"
+      },
+      "Established Year": 2013,
+      "Financial Aid Available": "Yes",
+      "Graduate Enrollment": "2,000+",
+      "Location": "Bangalore, India",
+      "Nearby Hangout Areas": [
+        "Forum Mall",
+        "Phoenix Marketcity",
+        "MG Road",
+        "Lalbagh Botanical Garden",
+        "UB City Mall"
+      ],
+      "Nearby Paying Guests": [
+        {
+          "Address": "Street 1, Bangalore",
+          "Contact": "9876543210",
+          "Facilities": [
+            "WiFi",
+            "Laundry",
+            "Security",
+            "AC rooms"
+          ],
+          "Food": "Vegetarian meals provided",
+          "Gender": "Male and Female",
+          "Name": "Sammruddhi_PG",
+          "Rent": "5000",
+          "latitude": 13.183,
+          "longitude": 77.55,
+          "password": "1234"
+        },
+        {
+          "Address": "Street 2, Bangalore",
+          "Contact": "9876543211",
+          "Facilities": [
+            "WiFi",
+            "Parking",
+            "24/7 Water"
+          ],
+          "Food": "Veg and Non-Veg",
+          "Gender": "Male",
+          "Name": "Ramu_PG",
+          "Rent": "5500",
+          "latitude": 13.1835,
+          "longitude": 77.551,
+          "password": "1234"
+        }
+      ],
+      "Nearby Restaurants": [
+        "McDonald's",
+        "KFC",
+        "Barbeque Nation",
+        "The Belgian Waffle Co.",
+        "Cafe Coffee Day"
+      ],
+      "Placement Record": {
+        "Average Salary": "₹4-6 LPA",
+        "Placement Percentage": "~85-90%",
+        "Top Recruiters": [
+          "TCS",
+          "Infosys",
+          "Wipro",
+          "Accenture",
+          "Capgemini",
+          "Cognizant",
+          "IBM"
+        ]
+      },
+      "Registrations": {
+        "123321": {
+          "aadhar": "",
+          "birthDate": "January 1, 2025",
+          "citizenship": "United States",
+          "email": "21",
+          "emergencyPhone": "21",
+          "firstName": "B",
+          "gender": "Male",
+          "languages": "",
+          "lastName": "Reddy",
+          "middleInitial": "Bharath",
+          "phone": "123321",
+          "timestamp": 1739793065563
+        }
+      },
+      "Study Abroad Programs": "Yes",
+      "Tuition ": "450000",
+      "Type": "Private",
+      "Undergraduate Enrollment": "6,000+",
+      "Website": "https://www.presidency.edu.in",
+      "imageURL": "https://firebasestorage.googleapis.com:443/v0/b/college-clue.firebasestorage.app/o/university_images%2FPresidency%20University%2Fprofile.jpg?alt=media&token=daf19b50-785a-4131-ad7d-f24340031304",
+      "latitude": 13.14302,
+      "longitude": 77.48752,
+      "password": "presidency@123"
+    },
+    "Reva university": {
+      "Accreditation": "Naav A",
+      "Alumni": "A,B,C",
+      "Campus Facilities": [
+        "Gym",
+        "lab"
+      ],
+      "Campus Size": "50 acres",
+      "College Name": "Reva",
+      "Courses Offered": [
+        "B.Tech",
+        "MBA",
+        "BBA"
+      ],
+      "Distance to Transport": {
+        "Airport": "20",
+        "Bus Station": "50m",
+        "Metro Station": "300m"
+      },
+      "Established Year": "2010",
+      "Financial Aid Available": "Yes",
+      "Graduate Enrollment": "2000+",
+      "Location": "Bangalore",
+      "Nearby Hangout Areas": "A,B,C",
+      "Nearby Paying Guests": [
+        "A",
+        "B"
+      ],
+      "Nearby Restaurants": [
+        "A",
+        "B",
+        "C"
+      ],
+      "Placement Record": {
+        "Average Salary": "5-7pm",
+        "Placement Percentage": "80%",
+        "Top Recruiters": [
+          "A",
+          "B",
+          "C"
+        ]
+      },
+      "Reviews": {
+        "-OJJ2s76wjKwap11c101": {
+          "rating": 5,
+          "text": "Good",
+          "timestamp": 1739798315784,
+          "userName": "Imran"
+        }
+      },
+      "Study Abroad Programs": "Yes",
+      "Tuition ": "550000",
+      "Type": "Private",
+      "Undergraduate Enrollment": "3000+",
+      "Website": "reva.in",
+      "imageURL": "https://firebasestorage.googleapis.com:443/v0/b/college-clue.firebasestorage.app/o/university_images%2FReva%20university%2Fprofile.jpg?alt=media&token=bcc4bb29-b5d7-472a-b468-6a03da5b120d",
+      "latitude": 13.11468,
+      "longitude": 77.63677,
+      "password": "reva@123"
+    }
+  },
+  "users": {
+    "1": {
+      "email": "1",
+      "fullName": "1",
+      "password": "1"
+    },
+    "2": {
+      "email": "2",
+      "fullName": "2",
+      "password": "2"
+    },
+    "11": {
+      "email": "11",
+      "fullName": "12",
+      "password": "1"
+    },
+    "12": {
+      "email": "12",
+      "fullName": "12",
+      "password": "12"
+    },
+    "134": {
+      "email": "134",
+      "fullName": "1",
+      "password": "123"
+    },
+    "B@123": {
+      "email": "B@123",
+      "fullName": "Bharath",
+      "password": "1234"
+    },
+    "Bharath@gmail_com": {
+      "email": "Bharath@gmail.com",
+      "fullName": "Bharath",
+      "password": "1234"
+    },
+    "b@123": {
+      "email": "b@123",
+      "fullName": "Bharath",
+      "password": "1234"
+    },
+    "b@1234": {
+      "email": "b@1234",
+      "fullName": "Bharathreddy",
+      "password": "123"
+    },
+    "bharath@gmail_com": {
+      "email": "bharath@gmail.com",
+      "fullName": "Bharath",
+      "password": "1@3$"
+    },
+    "c@123": {
+      "email": "c@123",
+      "fullName": "charan",
+      "password": "1234"
+    },
+    "charanm2319@gmail_com": {
+      "email": "charanm2319@gmail.com",
+      "fullName": "charan",
+      "password": "1234"
+    },
+    "uday@gmail_com": {
+      "email": "uday@gmail.com",
+      "fullName": "Uday",
+      "password": "1234"
+    },
+    "vishnu@gmail_com": {
+      "email": "vishnu@gmail.com",
+      "fullName": "Vishnu",
+      "password": "1234"
+    }
+  }
+}

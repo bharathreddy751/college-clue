@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CollegeClue - Find Your Perfect College</title>
+</head>
+<body>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+   <script>
+    window.addEventListener('beforeunload', function (e) {
+        // This method is designed for sending small amounts of data reliably
+        // just before a page unloads.
+        navigator.sendBeacon('/accounts/logout/');
+    });
+</script>
+
+</body>
+</html>

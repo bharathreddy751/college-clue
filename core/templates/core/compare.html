@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Compare Colleges</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f8f9fa;
+      margin: 0;
+      padding: 0;
+    }
+
+    h2 {
+      text-align: center;
+      padding: 25px 0;
+      background-color: #232f3e;
+      color: white;
+      margin: 0;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 30px auto;
+      background-color: white;
+      padding: 20px 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+
+    th, td {
+      padding: 12px 15px;
+      border: 1px solid #dee2e6;
+      text-align: center;
+    }
+
+    th {
+      background-color: #f1f3f5;
+      font-size: 16px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+
+    .back-link {
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 10px;
+      background-color: #007185;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+
+    .back-link:hover {
+      background-color: #005d66;
+    }
+
+    @media (max-width: 768px) {
+      table, thead, tbody, th, td, tr {
+        display: block;
+      }
+
+      thead tr {
+        display: none;
+      }
+
+      tr {
+        margin-bottom: 20px;
+        border-bottom: 2px solid #ccc;
+      }
+
+      td {
+        text-align: left;
+        padding-left: 50%;
+        position: relative;
+      }
+
+      td::before {
+        position: absolute;
+        left: 15px;
+        width: 45%;
+        white-space: nowrap;
+        font-weight: bold;
+      }
+
+      td:nth-of-type(1)::before { content: "Field"; }
+    }
+  </style>
+</head>
+<body>
+
+<h2>College Comparison</h2>
+
+<div class="container">
+  <table>
+    <tr>
+      <th>Field</th>
+      {% for uni in universities %}
+        <th>{{ uni.name }}</th>
+      {% endfor %}
+    </tr>
+
+    <tr>
+      <td>Location</td>
+      {% for uni in universities %}
+        <td>{{ uni.location }}</td>
+      {% endfor %}
+    </tr>
+
+    <tr>
+      <td>Tuition Fee</td>
+      {% for uni in universities %}
+        <td>₹{{ uni.tuition|default:"N/A" }}</td>
+      {% endfor %}
+    </tr>
+
+    <tr>
+      <td>Average Salary</td>
+      {% for uni in universities %}
+        <td>₹{{ uni.average_salary|default:"N/A" }}</td>
+      {% endfor %}
+    </tr>
+
+    <tr>
+      <td>Accreditation</td>
+      {% for uni in universities %}
+        <td>{{ uni.accreditation|default:"N/A" }}</td>
+      {% endfor %}
+    </tr>
+
+    <tr>
+      <td>No. of Courses</td>
+      {% for uni in universities %}
+        <td>{{ uni.number_of_courses|default:"N/A" }}</td>
+      {% endfor %}
+    </tr>
+
+    <tr>
+      <td>Campus Size</td>
+      {% for uni in universities %}
+        <td>{{ uni.campus_size|default:"N/A" }}</td>
+      {% endfor %}
+    </tr>
+
+    <tr>
+      <td>Top Recruiters</td>
+      {% for uni in universities %}
+        <td>
+          {% for recruiter in uni.top_recruiters.all %}
+            {{ recruiter.name }}{% if not forloop.last %}, {% endif %}
+          {% empty %}
+            N/A
+          {% endfor %}
+        </td>
+      {% endfor %}
+    </tr>
+  </table>
+
+  <a class="back-link" href="{% url 'listofuniversities' %}">← Back to University List</a>
+</div>
+
+</body>
+</html>

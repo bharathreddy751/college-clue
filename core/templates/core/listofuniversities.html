@@ -1,0 +1,1348 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Explore Colleges</title>-->
+<!--    <script src="https://cdn.tailwindcss.com"></script>-->
+<!--    <style>-->
+<!--        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');-->
+
+<!--        /* Custom Styles for consistency with Landing Page */-->
+<!--        body {-->
+<!--            font-family: 'Poppins', sans-serif;-->
+<!--            color: #e0e0e0; /* Light text for dark background */-->
+<!--            font-weight: 500;-->
+<!--        }-->
+
+<!--        /* Hero-like gradient for overall background */-->
+<!--        .page-gradient-bg {-->
+<!--            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 30%, #0f3460 70%, #533483 100%);-->
+<!--        }-->
+
+<!--        /* Enhanced card animations */-->
+<!--        .card-hover {-->
+<!--            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);-->
+<!--            position: relative;-->
+<!--            overflow: hidden;-->
+<!--        }-->
+
+<!--        .card-hover::before {-->
+<!--            content: '';-->
+<!--            position: absolute;-->
+<!--            top: 0;-->
+<!--            left: -100%;-->
+<!--            width: 100%;-->
+<!--            height: 100%;-->
+<!--            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);-->
+<!--            transition: left 0.5s;-->
+<!--        }-->
+
+<!--        .card-hover:hover::before {-->
+<!--            left: 100%;-->
+<!--        }-->
+
+<!--        .card-hover:hover {-->
+<!--            transform: translateY(-10px) scale(1.02);-->
+<!--            box-shadow: 0 25px 50px rgba(45, 55, 72, 0.25);-->
+<!--        }-->
+
+<!--        /* Beautiful dark button styles */-->
+<!--        .btn-primary {-->
+<!--            background: linear-gradient(135deg, #2d3748 0%, #4a5568 50%, #1a202c 100%);-->
+<!--            background-size: 200% 200%;-->
+<!--            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);-->
+<!--            position: relative;-->
+<!--            overflow: hidden;-->
+<!--            border-radius: 25px;-->
+<!--            display: inline-flex;-->
+<!--            align-items: center;-->
+<!--            justify-content: center;-->
+<!--        }-->
+
+<!--        .btn-primary::before {-->
+<!--            content: '';-->
+<!--            position: absolute;-->
+<!--            top: 0;-->
+<!--            left: -100%;-->
+<!--            width: 100%;-->
+<!--            height: 100%;-->
+<!--            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);-->
+<!--            transition: left 0.6s;-->
+<!--        }-->
+
+<!--        .btn-primary:hover::before {-->
+<!--            left: 100%;-->
+<!--        }-->
+
+<!--        .btn-primary:hover {-->
+<!--            background-position: 100% 0;-->
+<!--            transform: translateY(-3px) scale(1.05);-->
+<!--            box-shadow: 0 15px 35px rgba(45, 55, 72, 0.4);-->
+<!--        }-->
+
+<!--        .btn-secondary {-->
+<!--            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);-->
+<!--            /* The primary background of the button (the inner white part) */-->
+<!--            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);-->
+
+<!--            /* This transparent border is where the gradient will "show through" */-->
+<!--            border: 2px solid transparent;-->
+
+<!--            background-clip: padding-box; /* Crucial: Clips the button's own background to its padding box,-->
+<!--                                              allowing the 'before' pseudo-element's background to be seen in the border area */-->
+<!--            position: relative;-->
+<!--            border-radius: 25px;-->
+<!--            color: #1a1a1a;-->
+<!--            /* Ensure no direct mask properties here */-->
+<!--        }-->
+
+<!--        .btn-secondary::before {-->
+<!--            content: '';-->
+<!--            position: absolute;-->
+<!--            inset: 0; /* Make the pseudo-element cover the entire button area, including the border */-->
+<!--            border-radius: inherit; /* Inherit border-radius from the parent */-->
+
+<!--            /* This is the gradient that will form the border */-->
+<!--            background: linear-gradient(135deg, #667eea, #764ba2, #f093fb);-->
+
+<!--            /* Crucial for the border effect: Clip this background to the border-box-->
+<!--               and make it start from the border-box */-->
+<!--            background-origin: border-box;-->
+<!--            background-clip: border-box;-->
+
+<!--            /* To ensure this gradient is behind the main button's white background */-->
+<!--            z-index: -1;-->
+<!--        }-->
+
+<!--        .btn-secondary:hover {-->
+<!--            transform: translateY(-3px) scale(1.05);-->
+<!--            box-shadow: 0 15px 35px rgba(45, 55, 72, 0.2);-->
+<!--        }-->
+<!--        .btn-secondary:hover {-->
+<!--            transform: translateY(-3px) scale(1.05);-->
+<!--            box-shadow: 0 15px 35px rgba(45, 55, 72, 0.2);-->
+<!--        }-->
+
+<!--        /* Consistent heading styles */-->
+<!--        h1, h2, h3, h4, h5, h6 {-->
+<!--            color: #ffffff;-->
+<!--            font-weight: 700;-->
+<!--        }-->
+
+<!--        /* Input and Select field styling for dark theme */-->
+<!--        .dark-input {-->
+<!--            background-color: #2d3748;-->
+<!--            color: #e0e0e0;-->
+<!--            border: 1px solid #4a5568;-->
+<!--        }-->
+<!--        .dark-input::placeholder {-->
+<!--            color: #a0aec0;-->
+<!--        }-->
+<!--        .dark-input:focus {-->
+<!--            outline: none;-->
+<!--            border-color: #667eea;-->
+<!--            box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.5);-->
+<!--        }-->
+
+<!--        /* Sidebar styles */-->
+<!--        .filter-sidebar {-->
+<!--            background: #1a202c;-->
+<!--            color: #e0e0e0;-->
+<!--            box-shadow: 4px 0 15px rgba(0, 0, 0, 0.4);-->
+<!--            border-right: 1px solid #2d3748;-->
+<!--            transition: transform 0.3s ease-in-out;-->
+<!--            transform: translateX(-100%);-->
+<!--        }-->
+
+<!--        .sidebar-header h4, .range-label {-->
+<!--            color: #ffffff;-->
+<!--        }-->
+<!--        .close-btn {-->
+<!--            color: #a0aec0;-->
+<!--        }-->
+<!--        .close-btn:hover {-->
+<!--            color: #ffffff;-->
+<!--        }-->
+
+<!--        /* Overlay for sidebar */-->
+<!--        .overlay {-->
+<!--            background: rgba(0, 0, 0, 0.6);-->
+<!--            z-index: 50;-->
+<!--        }-->
+
+<!--        /* Specific adjustments for college box */-->
+<!--        .college-box {-->
+<!--            background-color: #2d3748;-->
+<!--            color: #e0e0e0;-->
+<!--            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);-->
+<!--            border: 1px solid #4a5568;-->
+<!--        }-->
+<!--        .college-name {-->
+<!--            color: #ffffff;-->
+<!--        }-->
+<!--        .location {-->
+<!--            color: #a0aec0;-->
+<!--        }-->
+<!--        .location a {-->
+<!--            color: #667eea;-->
+<!--        }-->
+
+<!--        /* Style for the compare button outside sidebar */-->
+<!--        #compareBtn {-->
+<!--            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);-->
+<!--            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);-->
+<!--            font-weight: 600;-->
+<!--        }-->
+<!--        #compareBtn:hover {-->
+<!--            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);-->
+<!--        }-->
+
+<!--        /* Ensure range input looks okay on dark background */-->
+<!--        input[type="range"] {-->
+<!--            -webkit-appearance: none;-->
+<!--            width: 100%;-->
+<!--            height: 8px;-->
+<!--            background: #4a5568;-->
+<!--            border-radius: 5px;-->
+<!--            outline: none;-->
+<!--            opacity: 0.7;-->
+<!--            -webkit-transition: .2s;-->
+<!--            transition: opacity .2s;-->
+<!--        }-->
+<!--        input[type="range"]::-webkit-slider-thumb {-->
+<!--            -webkit-appearance: none;-->
+<!--            appearance: none;-->
+<!--            width: 20px;-->
+<!--            height: 20px;-->
+<!--            background: #667eea;-->
+<!--            border-radius: 50%;-->
+<!--            cursor: pointer;-->
+<!--            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3);-->
+<!--        }-->
+<!--        input[type="range"]::-moz-range-thumb {-->
+<!--            width: 20px;-->
+<!--            height: 20px;-->
+<!--            background: #667eea;-->
+<!--            border-radius: 50%;-->
+<!--            cursor: pointer;-->
+<!--            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3);-->
+<!--        }-->
+
+<!--        /* -&#45;&#45; NEW/MODIFIED CSS FOR CHECKBOX VISIBILITY -&#45;&#45; */-->
+<!--        .compare-checkbox {-->
+<!--            position: absolute;-->
+<!--            top: 1rem;-->
+<!--            left: 1rem;-->
+<!--            transform: scale(1.3);-->
+<!--            display: none !important;-->
+<!--        }-->
+
+<!--        body.show-compare-checkboxes .compare-checkbox {-->
+<!--            display: block !important;-->
+<!--        }-->
+
+<!--        /* -&#45;&#45; NEW/MODIFIED CSS FOR SIDEBAR SLIDE -&#45;&#45; */-->
+<!--        .filter-sidebar.open-sidebar {-->
+<!--            transform: translateX(0);-->
+<!--        }-->
+
+<!--        /* Main search/filter container for responsiveness */-->
+<!--        .search-filter-container {-->
+<!--            display: flex;-->
+<!--            align-items: center;-->
+<!--            gap: 0.5rem; /* Reduced gap slightly for mobile space */-->
+<!--            width: 100%;-->
+<!--            flex-wrap: nowrap; /* Keep items in a single row by default */-->
+<!--        }-->
+
+<!--        /* Input specific adjustments */-->
+<!--        #searchInput, #locationFilter {-->
+<!--            flex-grow: 1; /* Allow inputs to grow and take available space */-->
+<!--            flex-shrink: 1; /* Allow inputs to shrink */-->
+<!--            /* Removed fixed widths (w-full, md:w-72, lg:w-96) from HTML to let flex-grow handle it */-->
+<!--        }-->
+
+<!--        /* Adjustments for smaller mobile screens */-->
+<!--        @media (max-width: 767px) {-->
+<!--            .search-filter-container {-->
+<!--                justify-content: space-between; /* Distribute items with space */-->
+<!--                padding-right: 0.5rem; /* Add a bit of padding on the right to prevent overflow */-->
+<!--            }-->
+
+<!--            #searchInput {-->
+<!--                min-width: 100px; /* Ensure search input is not too small */-->
+<!--                font-size: 0.9rem;-->
+<!--                padding: 0.5rem 0.75rem; /* Slightly smaller padding */-->
+<!--            }-->
+
+<!--            #locationFilter {-->
+<!--                min-width: 90px; /* Ensure location filter is not too small */-->
+<!--                font-size: 0.9rem;-->
+<!--                padding: 0.5rem 0.75rem; /* Slightly smaller padding */-->
+<!--            }-->
+
+<!--            .filter-icon {-->
+<!--                font-size: 1.5rem; /* Make filter icon slightly smaller to fit */-->
+<!--                margin-right: 0.25rem; /* Reduce margin */-->
+<!--            }-->
+<!--        }-->
+
+<!--        /* Very small screens (e.g., iPhone 5/SE) - allow wrapping for usability */-->
+<!--        @media (max-width: 375px) {-->
+<!--            .search-filter-container {-->
+<!--                flex-wrap: wrap; /* Allow wrapping on very small screens */-->
+<!--                justify-content: flex-start; /* Align to start when wrapped */-->
+<!--            }-->
+<!--            .filter-icon {-->
+<!--                width: 100%; /* Icon takes full width when wrapped */-->
+<!--                text-align: left; /* Align icon to left */-->
+<!--                margin-bottom: 0.5rem; /* Space below icon */-->
+<!--                margin-right: 0;-->
+<!--            }-->
+<!--            #searchInput, #locationFilter {-->
+<!--                width: 100%; /* Full width when wrapped */-->
+<!--                min-width: auto;-->
+<!--                font-size: 0.8rem;-->
+<!--                padding: 0.4rem 0.6rem;-->
+<!--            }-->
+<!--            #locationFilter {-->
+<!--                margin-top: 0.5rem; /* Add space between stacked inputs */-->
+<!--            }-->
+<!--        }-->
+
+<!--        /* Adjust compare button position for mobile */-->
+<!--        #compareBtn {-->
+<!--            bottom: 1rem;-->
+<!--            right: 1rem;-->
+<!--            padding: 0.75rem 1.5rem;-->
+<!--            font-size: 0.875rem;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body class="page-gradient-bg">-->
+
+<!--<nav class="bg-gray-800/95 backdrop-blur-md shadow-lg border-b border-gray-700">-->
+<!--    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">-->
+<!--        <div class="flex justify-between items-center h-16">-->
+<!--            <div class="flex items-center">-->
+<!--                <div class="flex-shrink-0">-->
+<!--                    <h1 class="text-2xl font-bold text-white">CollegeClue</h1>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="flex items-center space-x-4">-->
+<!--               {% if user.is_authenticated %}-->
+<!--                    <span class="mr-4 text-gray-300">Hello, <strong class="text-white">{{ user.username }}</strong>!</span>-->
+<!--                    <a href="{% url 'account_logout' %}" class="btn-primary text-white py-3 px-6 rounded-xl">Logout</a>-->
+<!--               {% else %}-->
+<!--                    <a href="{% url 'account_login' %}" class="btn-primary text-white py-3 px-6 rounded-xl">Login/Sign up</a>-->
+<!--               {% endif %}-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</nav>-->
+
+<!--<h1 class="text-4xl text-center pt-8 pb-4 font-bold text-white">Explore Colleges</h1>-->
+
+<!--<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">-->
+<!--    <div class="search-filter-container">-->
+<!--        <span class="filter-icon text-white cursor-pointer text-3xl" onclick="toggleSidebar()">☰</span>-->
+<!--        <input type="text" id="searchInput" onkeyup="searchColleges()" placeholder="Search colleges..."-->
+<!--               class="dark-input px-4 py-2 rounded-lg">-->
+<!--        <select id="locationFilter" onchange="searchColleges()"-->
+<!--                class="dark-input px-4 py-2 rounded-lg">-->
+<!--            <option value="">All Locations</option>-->
+<!--            {% for location in unique_locations %}-->
+<!--            <option value="{{ location|lower }}">{{ location }}</option>-->
+<!--            {% endfor %}-->
+<!--        </select>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--<div class="filter-sidebar fixed left-0 top-0 h-full w-64 p-6 transition-transform duration-300 ease-in-out transform -translate-x-full z-50" id="sidebar">-->
+<!--  <div class="flex justify-between items-center mb-8">-->
+<!--    <h4 class="text-2xl font-bold">Filter</h4>-->
+<!--    <span class="close-btn text-3xl cursor-pointer" onclick="toggleSidebar()">✖</span>-->
+<!--  </div>-->
+
+<!--  <div class="range-label mb-4">Tuition Fee (₹)</div>-->
+<!--  <input type="range" id="maxFee" min="0" max="1000000" step="10000" value="1000000" oninput="updateFeeLabel()">-->
+<!--  <div class="range-value mt-2 text-gray-400">-->
+<!--    Show up to ₹<span id="maxFeeLabel">10,00,000</span>-->
+<!--  </div>-->
+
+<!--  <hr class="border-gray-600 my-8">-->
+<!--  <button onclick="enableCompareMode()" class="btn-primary w-full text-white py-3 px-6 rounded-xl font-bold">-->
+<!--    <span class="mr-2">🟰</span> Compare-->
+<!--  </button>-->
+<!--</div>-->
+
+<!--<div class="overlay fixed inset-0 bg-black/60 z-40 hidden" id="overlay" onclick="toggleSidebar()"></div>-->
+
+<!--<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 p-8 max-w-7xl mx-auto" id="collegeGrid">-->
+<!--  {% for university in universities %}-->
+<!--  <div class="college-box card-hover p-6 rounded-xl text-center flex flex-col justify-between"-->
+<!--       data-id="{{ university.pk }}"-->
+<!--       data-location="{{ university.location|lower }}"-->
+<!--       data-fee="{{ university.tuition|default:'0'|cut:'₹'|cut:',' }}">-->
+<!--    <input type="checkbox" class="compare-checkbox" value="{{ university.pk }}">-->
+<!--    <img src="{{ university.image_url }}" alt="{{ university.name }}" class="w-full h-36 object-contain bg-white rounded-lg mb-4">-->
+<!--    <div class="college-name text-xl font-bold mb-2">{{ university.name }}</div>-->
+<!--    <div class="location text-sm text-gray-400 mb-4">-->
+<!--      <a href="https://www.google.com/maps?q={{ university.latitude }},{{ university.longitude }}" target="_blank" title="View on Google Maps" class="text-blue-400 hover:text-blue-300 mr-1">📍</a>-->
+<!--      {{ university.location }}-->
+<!--    </div>-->
+<!--    <a href="{% url 'university_detail' university.pk %}" class="btn-primary text-white py-2 px-4 rounded-xl text-sm font-medium">View Details</a>-->
+<!--  </div>-->
+<!--  {% empty %}-->
+<!--    <p class="col-span-full text-center text-gray-400 text-lg">No universities found.</p>-->
+<!--  {% endfor %}-->
+<!--</div>-->
+
+<!--<button id="compareBtn" class="fixed bottom-4 right-4 md:bottom-8 md:right-8 btn-primary text-white py-3 px-6 md:py-4 md:px-8 rounded-full shadow-lg text-base md:text-lg hidden" onclick="submitCompare()">Compare Selected</button>-->
+
+<!--<script>-->
+<!--  function toggleSidebar() {-->
+<!--    const sidebar = document.getElementById("sidebar");-->
+<!--    const overlay = document.getElementById("overlay");-->
+<!--    sidebar.classList.toggle("-translate-x-full");-->
+<!--    overlay.classList.toggle("hidden");-->
+<!--  }-->
+
+<!--  function updateFeeLabel() {-->
+<!--    const max = document.getElementById("maxFee").value;-->
+<!--    document.getElementById("maxFeeLabel").textContent = parseInt(max).toLocaleString('en-IN');-->
+<!--    searchColleges();-->
+<!--  }-->
+
+<!--  function searchColleges() {-->
+<!--    const input = document.getElementById("searchInput").value.toLowerCase();-->
+<!--    const locationFilter = document.getElementById("locationFilter").value.toLowerCase();-->
+<!--    const maxFee = parseInt(document.getElementById("maxFee").value);-->
+
+<!--    document.querySelectorAll(".college-box").forEach(college => {-->
+<!--      const name = college.querySelector(".college-name").textContent.toLowerCase();-->
+<!--      const location = college.getAttribute("data-location");-->
+<!--      const fee = parseInt(college.getAttribute("data-fee")) || 0;-->
+
+<!--      college.style.display = (name.includes(input) &&-->
+<!--                               (!locationFilter || location.includes(locationFilter)) &&-->
+<!--                               (fee <= maxFee)) ? "flex" : "none";-->
+<!--    });-->
+<!--  }-->
+
+<!--  function enableCompareMode() {-->
+<!--    const body = document.body;-->
+<!--    const compareBtn = document.getElementById("compareBtn");-->
+<!--    body.classList.toggle("show-compare-checkboxes");-->
+
+<!--    if (body.classList.contains("show-compare-checkboxes")) {-->
+<!--        document.querySelectorAll(".compare-checkbox").forEach(cb => cb.checked = false);-->
+<!--        compareBtn.classList.remove("hidden");-->
+<!--    } else {-->
+<!--        compareBtn.classList.add("hidden");-->
+<!--    }-->
+
+<!--    const sidebar = document.getElementById("sidebar");-->
+<!--    if (!sidebar.classList.contains("-translate-x-full")) {-->
+<!--        toggleSidebar();-->
+<!--    }-->
+<!--  }-->
+
+<!--  function submitCompare() {-->
+<!--    const selected = Array.from(document.querySelectorAll(".compare-checkbox:checked"))-->
+<!--                               .map(cb => cb.value);-->
+
+<!--    if (selected.length < 2) {-->
+<!--      console.log("Select at least 2 colleges to compare.");-->
+<!--      return;-->
+<!--    }-->
+<!--    window.location.href = `/compare/?ids=${selected.join(',')}`;-->
+<!--  }-->
+
+<!--  window.onload = () => {-->
+<!--    updateFeeLabel();-->
+<!--    searchColleges();-->
+<!--    document.getElementById("sidebar").classList.add("-translate-x-full");-->
+<!--    document.getElementById("overlay").classList.add("hidden");-->
+<!--    document.body.classList.remove("show-compare-checkboxes");-->
+<!--    document.getElementById("compareBtn").classList.add("hidden");-->
+<!--  };-->
+<!--</script>-->
+
+<!--</body>-->
+<!--</html>-->
+
+
+
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Explore Colleges</title>-->
+<!--    <script src="https://cdn.tailwindcss.com"></script>-->
+<!--    <style>-->
+<!--        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');-->
+
+<!--        /* Custom Styles for consistency with Landing Page */-->
+<!--        body {-->
+<!--            font-family: 'Poppins', sans-serif;-->
+<!--            color: #e0e0e0; /* Light text for dark background */-->
+<!--            font-weight: 500;-->
+<!--        }-->
+
+<!--        /* Hero-like gradient for overall background */-->
+<!--        .page-gradient-bg {-->
+<!--            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 30%, #0f3460 70%, #533483 100%);-->
+<!--        }-->
+
+<!--        /* Enhanced card animations */-->
+<!--        .card-hover {-->
+<!--            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);-->
+<!--            position: relative;-->
+<!--            overflow: hidden;-->
+<!--        }-->
+
+<!--        .card-hover::before {-->
+<!--            content: '';-->
+<!--            position: absolute;-->
+<!--            top: 0;-->
+<!--            left: -100%;-->
+<!--            width: 100%;-->
+<!--            height: 100%;-->
+<!--            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);-->
+<!--            transition: left 0.5s;-->
+<!--        }-->
+
+<!--        .card-hover:hover::before {-->
+<!--            left: 100%;-->
+<!--        }-->
+
+<!--        .card-hover:hover {-->
+<!--            transform: translateY(-10px) scale(1.02);-->
+<!--            box-shadow: 0 25px 50px rgba(45, 55, 72, 0.25);-->
+<!--        }-->
+
+<!--        /* Beautiful dark button styles */-->
+<!--        .btn-primary {-->
+<!--            background: linear-gradient(135deg, #2d3748 0%, #4a5568 50%, #1a202c 100%);-->
+<!--            background-size: 200% 200%;-->
+<!--            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);-->
+<!--            position: relative;-->
+<!--            overflow: hidden;-->
+<!--            border-radius: 25px;-->
+<!--            display: inline-flex;-->
+<!--            align-items: center;-->
+<!--            justify-content: center;-->
+<!--        }-->
+
+<!--        .btn-primary::before {-->
+<!--            content: '';-->
+<!--            position: absolute;-->
+<!--            top: 0;-->
+<!--            left: -100%;-->
+<!--            width: 100%;-->
+<!--            height: 100%;-->
+<!--            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);-->
+<!--            transition: left 0.6s;-->
+<!--        }-->
+
+<!--        .btn-primary:hover::before {-->
+<!--            left: 100%;-->
+<!--        }-->
+
+<!--        .btn-primary:hover {-->
+<!--            background-position: 100% 0;-->
+<!--            transform: translateY(-3px) scale(1.05);-->
+<!--            box-shadow: 0 15px 35px rgba(45, 55, 72, 0.4);-->
+<!--        }-->
+
+<!--       .btn-secondary {-->
+<!--    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);-->
+<!--    /* The primary background of the button (the inner white part) */-->
+<!--    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);-->
+
+<!--    /* This transparent border is where the gradient will "show through" */-->
+<!--    border: 2px solid transparent;-->
+
+<!--    background-clip: padding-box; /* Crucial: Clips the button's own background to its padding box,-->
+<!--                                      allowing the 'before' pseudo-element's background to be seen in the border area */-->
+<!--    position: relative;-->
+<!--    border-radius: 25px;-->
+<!--    color: #1a1a1a;-->
+<!--    /* Ensure no direct mask properties here */-->
+<!--}-->
+
+<!--.btn-secondary::before {-->
+<!--    content: '';-->
+<!--    position: absolute;-->
+<!--    inset: 0; /* Make the pseudo-element cover the entire button area, including the border */-->
+<!--    border-radius: inherit; /* Inherit border-radius from the parent */-->
+
+<!--    /* This is the gradient that will form the border */-->
+<!--    background: linear-gradient(135deg, #667eea, #764ba2, #f093fb);-->
+
+<!--    /* Crucial for the border effect: Clip this background to the border-box-->
+<!--       and make it start from the border-box */-->
+<!--    background-origin: border-box;-->
+<!--    background-clip: border-box;-->
+
+<!--    /* To ensure this gradient is behind the main button's white background */-->
+<!--    z-index: -1;-->
+<!--}-->
+
+<!--.btn-secondary:hover {-->
+<!--    transform: translateY(-3px) scale(1.05);-->
+<!--    box-shadow: 0 15px 35px rgba(45, 55, 72, 0.2);-->
+<!--}-->
+<!--        .btn-secondary:hover {-->
+<!--            transform: translateY(-3px) scale(1.05);-->
+<!--            box-shadow: 0 15px 35px rgba(45, 55, 72, 0.2);-->
+<!--        }-->
+
+<!--        /* Consistent heading styles */-->
+<!--        h1, h2, h3, h4, h5, h6 {-->
+<!--            color: #ffffff;-->
+<!--            font-weight: 700;-->
+<!--        }-->
+
+<!--        /* Input and Select field styling for dark theme */-->
+<!--        .dark-input {-->
+<!--            background-color: #2d3748;-->
+<!--            color: #e0e0e0;-->
+<!--            border: 1px solid #4a5568;-->
+<!--        }-->
+<!--        .dark-input::placeholder {-->
+<!--            color: #a0aec0;-->
+<!--        }-->
+<!--        .dark-input:focus {-->
+<!--            outline: none;-->
+<!--            border-color: #667eea;-->
+<!--            box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.5);-->
+<!--        }-->
+
+<!--        /* Sidebar styles */-->
+<!--        .filter-sidebar {-->
+<!--            background: #1a202c;-->
+<!--            color: #e0e0e0;-->
+<!--            box-shadow: 4px 0 15px rgba(0, 0, 0, 0.4);-->
+<!--            border-right: 1px solid #2d3748;-->
+<!--            transition: transform 0.3s ease-in-out;-->
+<!--            transform: translateX(-100%);-->
+<!--        }-->
+
+<!--        .sidebar-header h4, .range-label {-->
+<!--            color: #ffffff;-->
+<!--        }-->
+<!--        .close-btn {-->
+<!--            color: #a0aec0;-->
+<!--        }-->
+<!--        .close-btn:hover {-->
+<!--            color: #ffffff;-->
+<!--        }-->
+
+<!--        /* Overlay for sidebar */-->
+<!--        .overlay {-->
+<!--            background: rgba(0, 0, 0, 0.6);-->
+<!--            z-index: 50;-->
+<!--        }-->
+
+<!--        /* Specific adjustments for college box */-->
+<!--        .college-box {-->
+<!--            background-color: #2d3748;-->
+<!--            color: #e0e0e0;-->
+<!--            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);-->
+<!--            border: 1px solid #4a5568;-->
+<!--        }-->
+<!--        .college-name {-->
+<!--            color: #ffffff;-->
+<!--        }-->
+<!--        .location {-->
+<!--            color: #a0aec0;-->
+<!--        }-->
+<!--        .location a {-->
+<!--            color: #667eea;-->
+<!--        }-->
+
+<!--        /* Style for the compare button outside sidebar */-->
+<!--        #compareBtn {-->
+<!--            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);-->
+<!--            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);-->
+<!--            font-weight: 600;-->
+<!--        }-->
+<!--        #compareBtn:hover {-->
+<!--            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);-->
+<!--        }-->
+
+<!--        /* Ensure range input looks okay on dark background */-->
+<!--        input[type="range"] {-->
+<!--            -webkit-appearance: none;-->
+<!--            width: 100%;-->
+<!--            height: 8px;-->
+<!--            background: #4a5568;-->
+<!--            border-radius: 5px;-->
+<!--            outline: none;-->
+<!--            opacity: 0.7;-->
+<!--            -webkit-transition: .2s;-->
+<!--            transition: opacity .2s;-->
+<!--        }-->
+<!--        input[type="range"]::-webkit-slider-thumb {-->
+<!--            -webkit-appearance: none;-->
+<!--            appearance: none;-->
+<!--            width: 20px;-->
+<!--            height: 20px;-->
+<!--            background: #667eea;-->
+<!--            border-radius: 50%;-->
+<!--            cursor: pointer;-->
+<!--            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3);-->
+<!--        }-->
+<!--        input[type="range"]::-moz-range-thumb {-->
+<!--            width: 20px;-->
+<!--            height: 20px;-->
+<!--            background: #667eea;-->
+<!--            border-radius: 50%;-->
+<!--            cursor: pointer;-->
+<!--            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3);-->
+<!--        }-->
+
+<!--        /* -&#45;&#45; NEW/MODIFIED CSS FOR CHECKBOX VISIBILITY -&#45;&#45; */-->
+<!--        .compare-checkbox {-->
+<!--            position: absolute;-->
+<!--            top: 1rem;-->
+<!--            left: 1rem;-->
+<!--            transform: scale(1.3);-->
+<!--            display: none !important;-->
+<!--        }-->
+
+<!--        body.show-compare-checkboxes .compare-checkbox {-->
+<!--            display: block !important;-->
+<!--        }-->
+
+<!--        /* -&#45;&#45; NEW/MODIFIED CSS FOR SIDEBAR SLIDE -&#45;&#45; */-->
+<!--        .filter-sidebar.open-sidebar {-->
+<!--            transform: translateX(0);-->
+<!--        }-->
+
+<!--        /* Main search/filter container for responsiveness */-->
+<!--        .search-filter-container {-->
+<!--            display: flex;-->
+<!--            align-items: center;-->
+<!--            gap: 0.5rem; /* Reduced gap slightly for mobile space */-->
+<!--            width: 100%;-->
+<!--            flex-wrap: nowrap; /* Keep items in a single row by default */-->
+<!--        }-->
+
+<!--        /* Input specific adjustments */-->
+<!--        #searchInput, #locationFilter {-->
+<!--            flex-grow: 1; /* Allow inputs to grow and take available space */-->
+<!--            flex-shrink: 1; /* Allow inputs to shrink */-->
+<!--            /* Removed fixed widths (w-full, md:w-72, lg:w-96) from HTML to let flex-grow handle it */-->
+<!--        }-->
+
+<!--        /* Adjustments for smaller mobile screens */-->
+<!--        @media (max-width: 767px) {-->
+<!--            .search-filter-container {-->
+<!--                justify-content: space-between; /* Distribute items with space */-->
+<!--                padding-right: 0.5rem; /* Add a bit of padding on the right to prevent overflow */-->
+<!--            }-->
+
+<!--            #searchInput {-->
+<!--                min-width: 100px; /* Ensure search input is not too small */-->
+<!--                font-size: 0.9rem;-->
+<!--                padding: 0.5rem 0.75rem; /* Slightly smaller padding */-->
+<!--            }-->
+
+<!--            #locationFilter {-->
+<!--                min-width: 90px; /* Ensure location filter is not too small */-->
+<!--                font-size: 0.9rem;-->
+<!--                padding: 0.5rem 0.75rem; /* Slightly smaller padding */-->
+<!--            }-->
+
+<!--            .filter-icon {-->
+<!--                font-size: 1.5rem; /* Make filter icon slightly smaller to fit */-->
+<!--                margin-right: 0.25rem; /* Reduce margin */-->
+<!--            }-->
+<!--        }-->
+
+<!--        /* Very small screens (e.g., iPhone 5/SE) - allow wrapping for usability */-->
+<!--        @media (max-width: 375px) {-->
+<!--            .search-filter-container {-->
+<!--                flex-wrap: wrap; /* Allow wrapping on very small screens */-->
+<!--                justify-content: flex-start; /* Align to start when wrapped */-->
+<!--            }-->
+<!--            .filter-icon {-->
+<!--                width: 100%; /* Icon takes full width when wrapped */-->
+<!--                text-align: left; /* Align icon to left */-->
+<!--                margin-bottom: 0.5rem; /* Space below icon */-->
+<!--                margin-right: 0;-->
+<!--            }-->
+<!--            #searchInput, #locationFilter {-->
+<!--                width: 100%; /* Full width when wrapped */-->
+<!--                min-width: auto;-->
+<!--                font-size: 0.8rem;-->
+<!--                padding: 0.4rem 0.6rem;-->
+<!--            }-->
+<!--            #locationFilter {-->
+<!--                margin-top: 0.5rem; /* Add space between stacked inputs */-->
+<!--            }-->
+<!--        }-->
+
+<!--        /* Adjust compare button position for mobile */-->
+<!--        #compareBtn {-->
+<!--            bottom: 1rem;-->
+<!--            right: 1rem;-->
+<!--            padding: 0.75rem 1.5rem;-->
+<!--            font-size: 0.875rem;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body class="page-gradient-bg">-->
+
+<!--<nav class="bg-gray-800/95 backdrop-blur-md shadow-lg border-b border-gray-700">-->
+<!--    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">-->
+<!--        <div class="flex justify-between items-center h-16">-->
+<!--            <div class="flex items-center">-->
+<!--                <div class="flex-shrink-0">-->
+<!--                    <h1 class="text-2xl font-bold text-white">CollegeClue</h1>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="flex items-center space-x-4">-->
+<!--               {% if user.is_authenticated %}-->
+<!--                    <span class="mr-4 text-gray-300">Hello, <strong class="text-white">{{ user.username }}</strong>!</span>-->
+<!--                    <a href="{% url 'account_logout' %}" class="btn-primary text-white py-3 px-6 rounded-xl">Logout</a>-->
+<!--               {% else %}-->
+<!--                    <a href="{% url 'account_login' %}" class="btn-primary text-white py-3 px-6 rounded-xl">Login/Sign up</a>-->
+<!--               {% endif %}-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</nav>-->
+
+<!--<h1 class="text-4xl text-center pt-8 pb-4 font-bold text-white">Explore Colleges</h1>-->
+
+<!--<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">-->
+<!--    <div class="search-filter-container">-->
+<!--        <span class="filter-icon text-white cursor-pointer text-3xl" onclick="toggleSidebar()">☰</span>-->
+<!--        <input type="text" id="searchInput" onkeyup="searchColleges()" placeholder="Search colleges..."-->
+<!--               class="dark-input px-4 py-2 rounded-lg">-->
+<!--        <select id="locationFilter" onchange="searchColleges()"-->
+<!--                class="dark-input px-4 py-2 rounded-lg">-->
+<!--            <option value="">All Locations</option>-->
+<!--            {% for location in unique_locations %}-->
+<!--            <option value="{{ location|lower }}">{{ location }}</option>-->
+<!--            {% endfor %}-->
+<!--        </select>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--<div class="filter-sidebar fixed left-0 top-0 h-full w-64 p-6 transition-transform duration-300 ease-in-out transform -translate-x-full z-50" id="sidebar">-->
+<!--  <div class="flex justify-between items-center mb-8">-->
+<!--    <h4 class="text-2xl font-bold">Filter</h4>-->
+<!--    <span class="close-btn text-3xl cursor-pointer" onclick="toggleSidebar()">✖</span>-->
+<!--  </div>-->
+
+<!--  <div class="range-label mb-4">Tuition Fee (₹)</div>-->
+<!--  <input type="range" id="maxFee" min="0" max="1000000" step="10000" value="1000000" oninput="updateFeeLabel()">-->
+<!--  <div class="range-value mt-2 text-gray-400">-->
+<!--    Show up to ₹<span id="maxFeeLabel">10,00,000</span>-->
+<!--  </div>-->
+
+<!--  <hr class="border-gray-600 my-8">-->
+<!--  <button onclick="enableCompareMode()" class="btn-primary w-full text-white py-3 px-6 rounded-xl font-bold">-->
+<!--    <span class="mr-2">🟰</span> Compare-->
+<!--  </button>-->
+<!--</div>-->
+
+<!--<div class="overlay fixed inset-0 bg-black/60 z-40 hidden" id="overlay" onclick="toggleSidebar()"></div>-->
+
+<!--<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 p-8 max-w-7xl mx-auto" id="collegeGrid">-->
+<!--  {% for university in universities %}-->
+<!--  <div class="college-box card-hover p-6 rounded-xl text-center flex flex-col justify-between"-->
+<!--       data-id="{{ university.pk }}"-->
+<!--       data-location="{{ university.location|lower }}"-->
+<!--       data-fee="{{ university.tuition|default:'0'|cut:'₹'|cut:',' }}">-->
+<!--    <input type="checkbox" class="compare-checkbox" value="{{ university.pk }}">-->
+<!--    <img src="{{ university.image_url }}" alt="{{ university.name }}" class="w-full h-36 object-contain bg-white rounded-lg mb-4">-->
+<!--    <div class="college-name text-xl font-bold mb-2">{{ university.name }}</div>-->
+<!--    <div class="location text-sm text-gray-400 mb-4">-->
+<!--      <a href="https://www.google.com/maps?q={{ university.latitude }},{{ university.longitude }}" target="_blank" title="View on Google Maps" class="text-blue-400 hover:text-blue-300 mr-1">📍</a>-->
+<!--      {{ university.location }}-->
+<!--    </div>-->
+<!--    <a href="{% url 'university_detail' university.pk %}" class="btn-primary text-white py-2 px-4 rounded-xl text-sm font-medium">View Details</a>-->
+<!--  </div>-->
+<!--  {% empty %}-->
+<!--    <p class="col-span-full text-center text-gray-400 text-lg">No universities found.</p>-->
+<!--  {% endfor %}-->
+<!--</div>-->
+
+<!--<button id="compareBtn" class="fixed bottom-4 right-4 md:bottom-8 md:right-8 btn-primary text-white py-3 px-6 md:py-4 md:px-8 rounded-full shadow-lg text-base md:text-lg hidden" onclick="submitCompare()">Compare Selected</button>-->
+
+<!--<script>-->
+<!--  function toggleSidebar() {-->
+<!--    const sidebar = document.getElementById("sidebar");-->
+<!--    const overlay = document.getElementById("overlay");-->
+<!--    sidebar.classList.toggle("-translate-x-full");-->
+<!--    overlay.classList.toggle("hidden");-->
+<!--  }-->
+
+<!--  function updateFeeLabel() {-->
+<!--    const max = document.getElementById("maxFee").value;-->
+<!--    document.getElementById("maxFeeLabel").textContent = parseInt(max).toLocaleString('en-IN');-->
+<!--    searchColleges();-->
+<!--  }-->
+
+<!--  function searchColleges() {-->
+<!--    const input = document.getElementById("searchInput").value.toLowerCase();-->
+<!--    const locationFilter = document.getElementById("locationFilter").value.toLowerCase();-->
+<!--    const maxFee = parseInt(document.getElementById("maxFee").value);-->
+
+<!--    document.querySelectorAll(".college-box").forEach(college => {-->
+<!--      const name = college.querySelector(".college-name").textContent.toLowerCase();-->
+<!--      const location = college.getAttribute("data-location");-->
+<!--      const fee = parseInt(college.getAttribute("data-fee")) || 0;-->
+
+<!--      college.style.display = (name.includes(input) &&-->
+<!--                               (!locationFilter || location.includes(locationFilter)) &&-->
+<!--                               (fee <= maxFee)) ? "flex" : "none";-->
+<!--    });-->
+<!--  }-->
+
+<!--  function enableCompareMode() {-->
+<!--    const body = document.body;-->
+<!--    const compareBtn = document.getElementById("compareBtn");-->
+<!--    body.classList.toggle("show-compare-checkboxes");-->
+
+<!--    if (body.classList.contains("show-compare-checkboxes")) {-->
+<!--        document.querySelectorAll(".compare-checkbox").forEach(cb => cb.checked = false);-->
+<!--        compareBtn.classList.remove("hidden");-->
+<!--    } else {-->
+<!--        compareBtn.classList.add("hidden");-->
+<!--    }-->
+
+<!--    const sidebar = document.getElementById("sidebar");-->
+<!--    if (!sidebar.classList.contains("-translate-x-full")) {-->
+<!--        toggleSidebar();-->
+<!--    }-->
+<!--  }-->
+
+<!--  function submitCompare() {-->
+<!--    const selected = Array.from(document.querySelectorAll(".compare-checkbox:checked"))-->
+<!--                               .map(cb => cb.value);-->
+
+<!--    if (selected.length < 2) {-->
+<!--      alert("Select at least 2 colleges to compare.");-->
+<!--      return;-->
+<!--    }-->
+<!--    window.location.href = `/compare/?ids=${selected.join(',')}`;-->
+<!--  }-->
+
+<!--  window.onload = () => {-->
+<!--    updateFeeLabel();-->
+<!--    searchColleges();-->
+<!--    document.getElementById("sidebar").classList.add("-translate-x-full");-->
+<!--    document.getElementById("overlay").classList.add("hidden");-->
+<!--    document.body.classList.remove("show-compare-checkboxes");-->
+<!--    document.getElementById("compareBtn").classList.add("hidden");-->
+<!--  };-->
+<!--</script>-->
+
+<!--</body>-->
+<!--</html>-->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore Colleges</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+        /* Custom Styles for consistency with Landing Page */
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #e0e0e0; /* Light text for dark background */
+            font-weight: 500;
+        }
+
+        /* Hero-like gradient for overall background */
+        .page-gradient-bg {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 30%, #0f3460 70%, #533483 100%);
+        }
+
+        /* Enhanced card animations */
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-hover::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .card-hover:hover::before {
+            left: 100%;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(45, 55, 72, 0.25);
+        }
+
+        /* Beautiful dark button styles */
+        .btn-primary {
+            background: linear-gradient(135deg, #2d3748 0%, #4a5568 50%, #1a202c 100%);
+            background-size: 200% 200%;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            border-radius: 25px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.6s;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary:hover {
+            background-position: 100% 0;
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(45, 55, 72, 0.4);
+        }
+
+        .btn-secondary {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            border: 2px solid transparent;
+            background-clip: padding-box;
+            position: relative;
+            border-radius: 25px;
+            color: #1a1a1a;
+        }
+        .btn-secondary::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            padding: 2px;
+            background: linear-gradient(135deg, #667eea, #764ba2, #f093fb);
+            border-radius: inherit;
+            mask: linear-gradient(#fff 0 0)content-box,linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+        }
+        .btn-secondary:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(45, 55, 72, 0.2);
+        }
+
+        /* Consistent heading styles */
+        h1, h2, h3, h4, h5, h6 {
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        /* Input and Select field styling for dark theme */
+        .dark-input {
+            background-color: #2d3748;
+            color: #e0e0e0;
+            border: 1px solid #4a5568;
+        }
+        .dark-input::placeholder {
+            color: #a0aec0;
+        }
+        .dark-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.5);
+        }
+
+        /* Sidebar styles */
+        .filter-sidebar {
+            background: #1a202c;
+            color: #e0e0e0;
+            box-shadow: 4px 0 15px rgba(0, 0, 0, 0.4);
+            border-right: 1px solid #2d3748;
+            transition: transform 0.3s ease-in-out;
+            transform: translateX(-100%);
+        }
+
+        .sidebar-header h4, .range-label {
+            color: #ffffff;
+        }
+        .close-btn {
+            color: #a0aec0;
+        }
+        .close-btn:hover {
+            color: #ffffff;
+        }
+
+        /* Overlay for sidebar */
+        .overlay {
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 50;
+        }
+
+        /* Specific adjustments for college box */
+        .college-box {
+            background-color: #2d3748;
+            color: #e0e0e0;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            border: 1px solid #4a5568;
+        }
+        .college-name {
+            color: #ffffff;
+        }
+        .location {
+            color: #a0aec0;
+        }
+        .location a {
+            color: #667eea;
+        }
+
+        /* Style for the compare button outside sidebar */
+        #compareBtn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+            font-weight: 600;
+        }
+        #compareBtn:hover {
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+        }
+
+        /* Ensure range input looks okay on dark background */
+        input[type="range"] {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 8px;
+            background: #4a5568;
+            border-radius: 5px;
+            outline: none;
+            opacity: 0.7;
+            -webkit-transition: .2s;
+            transition: opacity .2s;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            background: #667eea;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3);
+        }
+        input[type="range"]::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            background: #667eea;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3);
+        }
+
+        /* --- NEW/MODIFIED CSS FOR CHECKBOX VISIBILITY --- */
+        .compare-checkbox {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            transform: scale(1.3);
+            display: none !important;
+        }
+
+        body.show-compare-checkboxes .compare-checkbox {
+            display: block !important;
+        }
+
+        /* --- NEW/MODIFIED CSS FOR SIDEBAR SLIDE --- */
+        .filter-sidebar.open-sidebar {
+            transform: translateX(0);
+        }
+
+        /* Adjustments for mobile */
+        @media (max-width: 767px) {
+            #searchInput {
+                font-size: 0.9rem;
+            }
+            #locationFilter {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body class="page-gradient-bg">
+
+<nav class="bg-gray-800/95 backdrop-blur-md shadow-lg border-b border-gray-700">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+            <div class="flex items-center">
+                <div class="flex-shrink-0">
+                    <h1 class="text-2xl font-bold text-white">CollegeClue</h1>
+                </div>
+            </div>
+            <div class="flex items-center space-x-4">
+               {% if user.is_authenticated %}
+                    <span class="mr-4 text-gray-300">Hello, <strong class="text-white">{{ user.username }}</strong>!</span>
+                    <a href="{% url 'account_logout' %}" class="btn-primary text-white py-3 px-6 rounded-xl">Logout</a>
+               {% else %}
+                    <a href="{% url 'account_login' %}" class="btn-primary text-white py-3 px-6 rounded-xl">Login/Sign up</a>
+               {% endif %}
+            </div>
+        </div>
+    </div>
+</nav>
+
+<h1 class="text-4xl text-center pt-8 pb-4 font-bold text-white">Explore Colleges</h1>
+
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center py-4">
+    <span class="filter-icon text-white text-3xl cursor-pointer" onclick="toggleSidebar()">☰</span>
+    <div class="flex space-x-4">
+        <input type="text" id="searchInput" onkeyup="searchColleges()" placeholder="Search colleges..."
+               class="dark-input px-4 py-2 rounded-full text-lg w-72 md:w-96">
+        <select id="locationFilter" onchange="searchColleges()"
+                class="dark-input px-4 py-2 rounded-full text-lg">
+            <option value="">All Locations</option>
+            {% for location in unique_locations %}
+            <option value="{{ location|lower }}">{{ location }}</option>
+            {% endfor %}
+        </select>
+    </div>
+</div>
+
+<div class="filter-sidebar fixed left-0 top-0 h-full w-64 p-6 transition-transform duration-300 ease-in-out transform -translate-x-full z-50" id="sidebar">
+  <div class="flex justify-between items-center mb-8">
+    <h4 class="text-2xl font-bold">Filter</h4>
+    <span class="close-btn text-3xl cursor-pointer" onclick="toggleSidebar()">✖</span>
+  </div>
+
+  <div class="range-label mb-4">Tuition Fee (₹)</div>
+  <input type="range" id="maxFee" min="0" max="1000000" step="10000" value="1000000" oninput="updateFeeLabel()">
+  <div class="range-value mt-2 text-gray-400">
+    Show up to ₹<span id="maxFeeLabel">10,00,000</span>
+  </div>
+
+  <hr class="border-gray-600 my-8">
+  <button onclick="enableCompareMode()" class="btn-primary w-full text-white py-3 px-6 rounded-xl font-bold">
+    <span class="mr-2">🟰</span> Compare
+  </button>
+</div>
+
+<div class="overlay fixed inset-0 bg-black/60 z-40 hidden" id="overlay" onclick="toggleSidebar()"></div>
+
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 p-8 max-w-7xl mx-auto" id="collegeGrid">
+  {% for university in universities %}
+  <div class="college-box card-hover p-6 rounded-xl text-center flex flex-col justify-between"
+       data-id="{{ university.pk }}"
+       data-location="{{ university.location|lower }}"
+       data-fee="{{ university.tuition|default:'0'|cut:'₹'|cut:',' }}">
+    <input type="checkbox" class="compare-checkbox" value="{{ university.pk }}">
+    <img src="{{ university.image_url }}" alt="{{ university.name }}" class="w-full h-36 object-contain bg-white rounded-lg mb-4">
+    <div class="college-name text-xl font-bold mb-2">{{ university.name }}</div>
+    <div class="location text-sm text-gray-400 mb-4">
+      <a href="https://www.google.com/maps?q={{ university.latitude }},{{ university.longitude }}" target="_blank" title="View on Google Maps" class="text-blue-400 hover:text-blue-300 mr-1">📍</a>
+      {{ university.location }}
+    </div>
+    <a href="{% url 'university_detail' university.pk %}" class="btn-primary text-white py-2 px-4 rounded-xl text-sm font-medium">View Details</a>
+  </div>
+  {% empty %}
+    <p class="col-span-full text-center text-gray-400 text-lg">No universities found.</p>
+  {% endfor %}
+</div>
+
+<button id="compareBtn" class="fixed bottom-8 right-8 btn-primary text-white py-4 px-8 rounded-full shadow-lg text-lg hidden" onclick="submitCompare()">Compare Selected</button>
+
+<script>
+  function toggleSidebar() {
+    const sidebar = document.getElementById("sidebar");
+    const overlay = document.getElementById("overlay");
+    sidebar.classList.toggle("-translate-x-full");
+    overlay.classList.toggle("hidden");
+  }
+
+  function updateFeeLabel() {
+    const max = document.getElementById("maxFee").value;
+    document.getElementById("maxFeeLabel").textContent = parseInt(max).toLocaleString('en-IN');
+    searchColleges();
+  }
+
+  function searchColleges() {
+    const input = document.getElementById("searchInput").value.toLowerCase();
+    const locationFilter = document.getElementById("locationFilter").value.toLowerCase();
+    const maxFee = parseInt(document.getElementById("maxFee").value);
+
+    document.querySelectorAll(".college-box").forEach(college => {
+      const name = college.querySelector(".college-name").textContent.toLowerCase();
+      const location = college.getAttribute("data-location");
+      const fee = parseInt(college.getAttribute("data-fee")) || 0;
+
+      college.style.display = (name.includes(input) &&
+                               (!locationFilter || location.includes(locationFilter)) &&
+                               (fee <= maxFee)) ? "flex" : "none";
+    });
+  }
+
+  function enableCompareMode() {
+    const body = document.body;
+    const compareBtn = document.getElementById("compareBtn");
+    body.classList.toggle("show-compare-checkboxes");
+
+    if (body.classList.contains("show-compare-checkboxes")) {
+        document.querySelectorAll(".compare-checkbox").forEach(cb => cb.checked = false);
+        compareBtn.classList.remove("hidden");
+    } else {
+        compareBtn.classList.add("hidden");
+    }
+
+    const sidebar = document.getElementById("sidebar");
+    if (!sidebar.classList.contains("-translate-x-full")) {
+        toggleSidebar();
+    }
+  }
+
+  function submitCompare() {
+    const selected = Array.from(document.querySelectorAll(".compare-checkbox:checked"))
+                               .map(cb => cb.value);
+
+    if (selected.length < 2) {
+      console.log("Select at least 2 colleges to compare.");
+      return;
+    }
+    window.location.href = `/compare/?ids=${selected.join(',')}`;
+  }
+
+  window.onload = () => {
+    updateFeeLabel();
+    searchColleges();
+    document.getElementById("sidebar").classList.add("-translate-x-full");
+    document.getElementById("overlay").classList.add("hidden");
+    document.body.classList.remove("show-compare-checkboxes");
+    document.getElementById("compareBtn").classList.add("hidden");
+  };
+</script>
+
+</body>
+</html>
