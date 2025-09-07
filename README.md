@@ -11,7 +11,8 @@ College Clue is a **centralized admission and accommodation platform** that help
 - 🏠 **Accommodation Management** – PGs/Hostels can list and manage their facilities.
 - 📝 **Student Registration** – Register with dynamic course options from the database.
 - 📩 **Email Notifications** – Students receive confirmation emails after successful registration.
-- 🛠️ **Admin Dashboard** – Colleges and PGs can manage their own data through Django Admin.  
+- 🛠️ **Admin Dashboard** – Colleges and PGs can manage their own data through Django Admin.
+- ❤️ **University Wishlist** – Save favorite universities to a personal list for easy access and future reference.
 - 🎉 **Modern UI Enhancements**
   - Confetti animation on registration success
   - Progress bar during form submission
