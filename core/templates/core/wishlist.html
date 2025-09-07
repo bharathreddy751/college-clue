@@ -1,0 +1,280 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Wishlist - CollegeClue</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #e0e0e0;
+      font-weight: 500;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 30%, #0f3460 70%, #533483 100%);
+      min-height: 100vh;
+    }
+
+    .nav-bar {
+      background-color: rgba(30, 41, 59, 0.95);
+      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      border-bottom: 1px solid rgba(75, 85, 99, 1);
+    }
+
+    .btn-primary {
+        background: linear-gradient(135deg, #2d3748 0%, #4a5568 50%, #1a202c 100%);
+        background-size: 200% 200%;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        position: relative;
+        overflow: hidden;
+        border-radius: 0.625rem;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+    }
+
+    .btn-primary::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+        transition: left 0.6s;
+    }
+
+    .btn-primary:hover::before {
+        left: 100%;
+    }
+
+    .btn-primary:hover {
+        background-position: 100% 0;
+        transform: translateY(-3px) scale(1.05);
+        box-shadow: 0 15px 35px rgba(45, 55, 72, 0.4);
+    }
+
+    .whatsapp-button {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: #25D366;
+        color: white;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        z-index: 1000;
+        text-decoration: none;
+    }
+
+    .whatsapp-button:hover {
+        transform: scale(1.1);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .whatsapp-button img {
+        width: 35px;
+        height: 35px;
+    }
+
+    .wishlist-item {
+        background: #2d3748;
+        border-radius: 0.75rem;
+        padding: 1rem 1.5rem;
+        margin-bottom: 1rem;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .wishlist-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 25px -5px rgba(0, 0, 0, 0.2);
+    }
+
+    .wishlist-item-name {
+        font-weight: 600;
+        color: #ffffff;
+        font-size: 1.125rem;
+        cursor: pointer;
+    }
+
+    .wishlist-item-name a {
+        color: inherit;
+        text-decoration: none;
+        transition: color 0.2s;
+    }
+
+    .wishlist-item-name a:hover {
+        color: #a0aec0;
+    }
+
+    .remove-btn {
+        background: linear-gradient(135deg, #d43f3f 0%, #e05e5e 100%);
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+        font-weight: 500;
+        transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+    }
+
+    .remove-btn:hover {
+        background: linear-gradient(135deg, #e05e5e 0%, #d43f3f 100%);
+        transform: scale(1.05);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    }
+
+    .empty-message {
+        text-align: center;
+        margin-top: 4rem;
+        padding: 2rem;
+        background-color: rgba(45, 55, 72, 0.8);
+        border-radius: 1rem;
+        border: 1px dashed #4a5568;
+    }
+  </style>
+</head>
+<body class="page-gradient-bg">
+
+<nav class="nav-bar h-16 flex items-center justify-between px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center">
+        <h1 class="text-2xl font-bold text-white">CollegeClue</h1>
+    </div>
+    <div class="flex items-center space-x-4">
+        {% if user.is_authenticated %}
+            <a href="{% url 'account_logout' %}">
+                <button class="btn-primary py-2 px-4 rounded-xl text-sm md:text-base">Logout</button>
+            </a>
+        {% else %}
+            <a href="{% url 'account_login' %}">
+                <button class="btn-primary py-2 px-4 rounded-xl text-sm md:text-base">Login/Sign up</button>
+            </a>
+        {% endif %}
+    </div>
+</nav>
+
+<div class="max-w-3xl mx-auto px-4 py-8">
+    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6">
+        <h2 class="text-4xl sm:text-5xl font-bold text-white">My Wishlist</h2>
+        {% if user.is_authenticated %}
+            <p class="text-lg text-gray-300 mt-2 sm:mt-0">Hello, **{{ user.username }}**!</p>
+        {% endif %}
+    </div>
+
+    <!-- Debug info - remove after testing -->
+    <div class="mb-4 p-3 bg-blue-900 rounded-lg">
+        <p class="text-sm text-gray-300">Debug: Found {{ universities|length }} universities in wishlist</p>
+        {% for university in universities %}
+            <p class="text-xs text-gray-400">- {{ university.name }} (ID: {{ university.id }})</p>
+        {% endfor %}
+    </div>
+
+    <div id="wishlist-container">
+        {% if universities %}
+            {% for university in universities %}
+                <div class="wishlist-item" id="wishlist-item-{{ university.pk }}">
+                    <span class="wishlist-item-name">
+                        <a href="{% url 'university_detail' pk=university.pk %}">{{ university.name }}</a>
+                    </span>
+                    <button class="remove-btn" data-university-id="{{ university.pk }}">
+                        <i class="fa-solid fa-trash-can"></i> Remove
+                    </button>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="empty-message">
+                <p class="text-lg font-semibold">Your wishlist is currently empty. 💔</p>
+                <p class="mt-2 text-gray-400">Add universities from their detail pages to see them here.</p>
+                <a href="{% url 'listofuniversities' %}" class="btn-primary py-2 px-4 mt-6 font-bold inline-block">Explore Colleges</a>
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="mt-10 flex justify-center">
+      <a href="{% url 'listofuniversities' %}" class="btn-primary py-3 px-6 font-bold">← Back to University List</a>
+    </div>
+
+</div>
+
+<!-- The CSRF token is needed for secure POST requests -->
+{% csrf_token %}
+
+<a href="https://wa.me/919390352252?text=Hello%20CollegeClue%2C%20I%20have%20a%20question."
+   class="whatsapp-button"
+   target="_blank"
+   rel="noopener noreferrer">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/1200px-WhatsApp.svg.png" alt="WhatsApp Chat" />
+</a>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const wishlistContainer = document.getElementById('wishlist-container');
+        const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+        const emptyMessageHtml = `
+            <div class="empty-message">
+                <p class="text-lg font-semibold">Your wishlist is currently empty. 💔</p>
+                <p class="mt-2 text-gray-400">Add universities from their detail pages to see them here.</p>
+                <a href="{% url 'listofuniversities' %}" class="btn-primary py-2 px-4 mt-6 font-bold inline-block">Explore Colleges</a>
+            </div>
+        `;
+
+        wishlistContainer.addEventListener('click', async (event) => {
+            const removeButton = event.target.closest('.remove-btn');
+            if (removeButton) {
+                const universityId = removeButton.getAttribute('data-university-id');
+                const url = "{% url 'remove_from_wishlist' %}";
+
+                try {
+                    const response = await fetch(url, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRFToken': csrftoken,
+                        },
+                        body: JSON.stringify({ university_id: universityId })
+                    });
+
+                    if (response.ok) {
+                        const result = await response.json();
+                        // Find the parent item to remove from the DOM
+                        const itemToRemove = document.getElementById(`wishlist-item-${universityId}`);
+                        if (itemToRemove) {
+                            itemToRemove.remove();
+
+                            // Check if the list is now empty
+                            if (wishlistContainer.children.length === 0) {
+                                wishlistContainer.innerHTML = emptyMessageHtml;
+                            }
+                        }
+                    } else {
+                        console.error('Failed to remove item:', response.statusText);
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                }
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

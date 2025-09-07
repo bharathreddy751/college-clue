@@ -6,6 +6,8 @@ from core import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')), # ADD THIS LINE
+    path('university_detail/<int:pk>/', views.university_detail, name='university_detail'),
+
     # path('', views.home, name='home'),
     path('', include('core.urls')),
     # Your home page, if you have one

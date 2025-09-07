@@ -14,6 +14,14 @@ from django.contrib.auth import logout
 from django.shortcuts import redirect
 from django.contrib.auth import REDIRECT_FIELD_NAME # <--- KEEP THIS LINE
 from django.views.generic import TemplateView
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, get_object_or_404
+from .models import University, Wishlist
+from django.http import JsonResponse
+from django.views.decorators.http import require_POST
+import json
+
+
 
 def home(request):
     universities = University.objects.all()
@@ -131,3 +139,69 @@ class CustomSignupView(SignupView):
 
 def heartbeat(request):
     return JsonResponse({"status": "ok"})
+
+
+@login_required(login_url='account_login')
+def my_wishlists(request):
+    """
+    Renders the wishlist page for the currently logged-in user.
+    """
+    try:
+        # Debug: Check user and wishlist
+        print(f"User: {request.user}, Authenticated: {request.user.is_authenticated}")
+
+        # Get or create wishlist for the user
+        wishlist, created = Wishlist.objects.get_or_create(user=request.user)
+        universities = wishlist.universities.all()
+
+        # Debug: Print what's in the wishlist
+        print(f"Wishlist universities: {[uni.name for uni in universities]}")
+        print(f"Wishlist count: {universities.count()}")
+
+    except Exception as e:
+        # Log the error and return empty list
+        print(f"Error retrieving wishlist: {e}")
+        universities = []
+
+    return render(request, 'core/wishlist.html', {'universities': universities})
+@require_POST
+@login_required
+def add_to_wishlist(request):
+    """
+    Adds a university to the user's wishlist via an AJAX POST request.
+    """
+    try:
+        data = json.loads(request.body)
+        university_id = data.get('university_id')
+        university = get_object_or_404(University, pk=university_id)
+
+        # Get or create the wishlist for the current user.
+        wishlist, created = Wishlist.objects.get_or_create(user=request.user)
+        wishlist.universities.add(university)
+
+        return JsonResponse({'success': True, 'message': f'Added {university.name} to wishlist.'})
+    except json.JSONDecodeError:
+        return JsonResponse({'success': False, 'message': 'Invalid JSON.'}, status=400)
+    except Exception as e:
+        return JsonResponse({'success': False, 'message': str(e)}, status=500)
+
+@require_POST
+@login_required
+def remove_from_wishlist(request):
+    """
+    Removes a university from the user's wishlist via an AJAX POST request.
+    """
+    try:
+        data = json.loads(request.body)
+        university_id = data.get('university_id')
+        university = get_object_or_404(University, pk=university_id)
+
+        # Get the wishlist for the current user.
+        wishlist = get_object_or_404(Wishlist, user=request.user)
+        wishlist.universities.remove(university)
+
+        return JsonResponse({'success': True, 'message': f'Removed {university.name} from wishlist.'})
+    except json.JSONDecodeError:
+        return JsonResponse({'success': False, 'message': 'Invalid JSON.'}, status=400)
+    except Exception as e:
+        return JsonResponse({'success': False, 'message': str(e)}, status=500)

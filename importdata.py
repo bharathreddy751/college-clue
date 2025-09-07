@@ -7,121 +7,167 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'DjangoProject2.settings')
 django.setup()
 
 from core.models import (
-    User, CourseCategory, CourseOption, University,
-    UniversityCourse, Facility, Restaurant, Hangout,
-    PayingGuest, PGFacility, Review, Recruiter, PlacementRecord,
-    Transport, AvailableLocation
+    User, University, UniversityCourse, Facility,
+    Restaurant, Hangout, PayingGuest, PGFacility,
+    Review, Recruiter, PlacementRecord, Transport,
+    AvailableLocation
 )
+from django.contrib.auth.hashers import make_password
 
 # Load JSON data
 with open('college-clue-default-rtdb-export.json', 'r') as file:
     data = json.load(file)
 
-# Load Users
-for user in data.get('users', {}).values():
-    User.objects.get_or_create(
-        email=user.get('email', ''),
-        full_name=user.get('fullName', ''),
-        password=user.get('password', '')
-    )
+print("Starting data import...")
 
-# Load Courses
-for course in data.get('courses', []):
-    category, _ = CourseCategory.objects.get_or_create(name=course['category'])
-    for option in course.get('options', []):
-        CourseOption.objects.get_or_create(category=category, name=option)
+# Load Users
+print("Importing users...")
+for user_id, user_data in data.get('users', {}).items():
+    try:
+        # Create user with hashed password
+        user, created = User.objects.get_or_create(
+            username=user_id,  # Using the Firebase user ID as username
+            defaults={
+                'email': user_data.get('email', ''),
+                'full_name': user_data.get('fullName', ''),
+                'password': make_password(user_data.get('password', '')),
+            }
+        )
+        if created:
+            print(f"Created user: {user.username}")
+    except Exception as e:
+        print(f"Error creating user {user_id}: {e}")
 
 # Load Available Locations
+print("Importing locations...")
 for location in data.get('location', []):
     AvailableLocation.objects.get_or_create(name=location)
 
 # Load Universities and related data
-for uni_name, u in data.get('universities', {}).items():
-    uni, _ = University.objects.get_or_create(
-        name=uni_name,
-        location=u.get('Location', ''),
-        accreditation=u.get('Accreditation', ''),
-        tuition=u.get('Tuition (In-state)', ''),
-        website=u.get('Website', ''),
-        average_salary=u.get('Average Salary', ''),
-        #placement_percentage=u.get('Placement Percentage', ''),
-        image_url=u.get('imageURL', ''),
-        type=u.get('Type', ''),
-        campus_size=u.get('Campus Size', ''),
-        undergraduate_enrollment=u.get('Undergraduate Enrollment', ''),
-        graduate_enrollment=u.get('Graduate Enrollment', ''),
-        financial_aid_available=u.get('Financial Aid Available', '') == "Yes",
-        established_year=str(u.get('Established Year', '')),
-        password=u.get('password', ''),
-        study_abroad_programs=u.get('Study Abroad Programs', '') == "Yes",
-        latitude=u.get('latitude', 0.0),
-        longitude=u.get('longitude', 0.0)
-    )
+print("Importing universities...")
+for uni_name, uni_data in data.get('universities', {}).items():
+    try:
+        # Create university
+        uni, created = University.objects.get_or_create(
+            name=uni_name,
+            defaults={
+                'location': uni_data.get('Location', ''),
+                'accreditation': uni_data.get('Accreditation', ''),
+                'alumni': uni_data.get('Alumni', ''),
+                'average_salary': uni_data.get('Average Salary', ''),
+                'campus_size': uni_data.get('Campus Size', ''),
+                'tuition': uni_data.get('Tuition ', ''),  # Note the space in key
+                'type': uni_data.get('Type', ''),
+                'undergraduate_enrollment': uni_data.get('Undergraduate Enrollment', ''),
+                'graduate_enrollment': uni_data.get('Graduate Enrollment', ''),
+                'financial_aid_available': bool(uni_data.get('Financial Aid Available', False)),
+                'established_year': str(uni_data.get('Established Year', '')),
+                'website': uni_data.get('Website', ''),
+                'image_url': uni_data.get('imageURL', ''),
+                'latitude': float(uni_data.get('latitude', 0.0)),
+                'longitude': float(uni_data.get('longitude', 0.0)),
+                'password': uni_data.get('password', ''),
+                'study_abroad_programs': bool(uni_data.get('Study Abroad Programs', False))
+            }
+        )
 
-    # University Courses Offered
-    for course_name in u.get('Courses Offered', []):
-        UniversityCourse.objects.get_or_create(university=uni, course_name=course_name)
+        if created:
+            print(f"Created university: {uni_name}")
 
-    # Campus Facilities
-    for f in u.get('Campus Facilities', []):
-        Facility.objects.get_or_create(university=uni, name=f)
-
-    # Restaurants
-    for r in u.get('Nearby Restaurants', []):
-        Restaurant.objects.get_or_create(university=uni, name=r)
-
-    # Hangout Areas
-    if isinstance(u.get('Nearby Hangout Areas', []), list):
-        for h in u.get('Nearby Hangout Areas', []):
-            Hangout.objects.get_or_create(university=uni, name=h)
-
-    # PGs
-    for pg in u.get('Nearby Paying Guests', []):
-        if isinstance(pg, dict):
-            pg_obj, _ = PayingGuest.objects.get_or_create(
+        # University Courses Offered
+        for course_name in uni_data.get('Courses Offered', []):
+            UniversityCourse.objects.get_or_create(
                 university=uni,
-                name=pg.get('Name', ''),
-                address=pg.get('Address', ''),
-                contact=pg.get('Contact', ''),
-                food=pg.get('Food', ''),
-                gender=pg.get('Gender', ''),
-                rent=pg.get('Rent', ''),
-                password=pg.get('password', ''),
-                latitude=pg.get('latitude', 0.0),
-                longitude=pg.get('longitude', 0.0)
+                course_name=course_name
             )
-            for facility in pg.get('Facilities', []):
-                PGFacility.objects.get_or_create(pg=pg_obj, name=facility)
 
-    # Reviews
-    for review in u.get('Reviews', {}).values():
-        Review.objects.get_or_create(
-            university=uni,
-            rating=review.get('rating', 0),
-            text=review.get('text', ''),
-            timestamp=review.get('timestamp', 0),
-            user_name=review.get('userName', '')
-        )
+        # Campus Facilities
+        for facility_name in uni_data.get('Campus Facilities', []):
+            Facility.objects.get_or_create(
+                university=uni,
+                name=facility_name
+            )
 
-    # Recruiters
-    for r in u.get('Top Recruiters', []):
-        Recruiter.objects.get_or_create(university=uni, name=r)
+        # Restaurants
+        for restaurant_name in uni_data.get('Nearby Restaurants', []):
+            Restaurant.objects.get_or_create(
+                university=uni,
+                name=restaurant_name
+            )
 
-    # Placement Record
-    if 'Placement Record' in u:
-        pr = u['Placement Record']
-        PlacementRecord.objects.get_or_create(
-            university=uni,
-            average_salary=pr.get('Average Salary', ''),
-            placement_percentage=pr.get('Placement Percentage', '')
-        )
+        # Hangout Areas
+        hangout_areas = uni_data.get('Nearby Hangout Areas', [])
+        if isinstance(hangout_areas, list):
+            for hangout_name in hangout_areas:
+                Hangout.objects.get_or_create(
+                    university=uni,
+                    name=hangout_name
+                )
 
-    # Transport Info
-    for k, v in u.get('Distance to Transport', {}).items():
-        Transport.objects.get_or_create(
-            university=uni,
-            type=k,
-            distance=v
-        )
+        # Paying Guests (PGs)
+        for pg_data in uni_data.get('Nearby Paying Guests', []):
+            if isinstance(pg_data, dict):
+                pg, pg_created = PayingGuest.objects.get_or_create(
+                    university=uni,
+                    name=pg_data.get('Name', ''),
+                    defaults={
+                        'address': pg_data.get('Address', ''),
+                        'contact': pg_data.get('Contact', ''),
+                        'food': pg_data.get('Food', ''),
+                        'gender': pg_data.get('Gender', ''),
+                        'rent': pg_data.get('Rent', ''),
+                        'password': pg_data.get('password', ''),
+                        'latitude': float(pg_data.get('latitude', 0.0)),
+                        'longitude': float(pg_data.get('longitude', 0.0))
+                    }
+                )
 
-print("✅ All data imported successfully.")
+                # PG Facilities
+                for facility_name in pg_data.get('Facilities', []):
+                    PGFacility.objects.get_or_create(
+                        pg=pg,
+                        name=facility_name
+                    )
+
+        # Reviews
+        for review_id, review_data in uni_data.get('Reviews', {}).items():
+            Review.objects.get_or_create(
+                university=uni,
+                rating=review_data.get('rating', 0),
+                text=review_data.get('text', ''),
+                timestamp=review_data.get('timestamp', 0),
+                user_name=review_data.get('userName', '')
+            )
+
+        # Recruiters
+        for recruiter_name in uni_data.get('Top Recruiters', []):
+            Recruiter.objects.get_or_create(
+                university=uni,
+                name=recruiter_name
+            )
+
+        # Placement Record
+        placement_data = uni_data.get('Placement Record', {})
+        if placement_data:
+            PlacementRecord.objects.get_or_create(
+                university=uni,
+                defaults={
+                    'average_salary': placement_data.get('Average Salary', ''),
+                    'placement_percentage': placement_data.get('Placement Percentage', '')
+                }
+            )
+
+        # Transport Info
+        transport_data = uni_data.get('Distance to Transport', {})
+        if isinstance(transport_data, dict):
+            for transport_type, distance in transport_data.items():
+                Transport.objects.get_or_create(
+                    university=uni,
+                    type=transport_type,
+                    distance=distance
+                )
+
+    except Exception as e:
+        print(f"Error processing university {uni_name}: {e}")
+
+print("✅ All data imported successfully!")

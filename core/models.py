@@ -1,42 +1,24 @@
 from django.db import models
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser, Group, Permission
+from django.db import models
+from django.contrib.auth.models import AbstractUser
+from django.utils.translation import gettext_lazy as _
 
 
 class User(AbstractUser):
-    email = models.EmailField('email address', unique=True)
-
+    # Add your custom fields
     full_name = models.CharField(max_length=150, blank=True)
 
-    USERNAME_FIELD = 'username'
-
-    REQUIRED_FIELDS = ['email', 'full_name']
-
-    groups = models.ManyToManyField(
-        Group,
-        verbose_name='groups',
-        blank=True,
-        help_text='The groups this user belongs to. A user will get all permissions granted to each of their groups.',
-        related_name='core_user_groups',
-        related_query_name='user',
-    )
-    user_permissions = models.ManyToManyField(
-        Permission,
-        verbose_name='user permissions',
-        blank=True,
-        help_text='Specific permissions for this user.',
-        related_name='core_user_permissions',
-        related_query_name='user',
-    )
+    # Remove the email field override since AbstractUser already has it
+    # Remove the groups and user_permissions overrides unless absolutely necessary
 
     def __str__(self):
         return self.username
 
     class Meta:
-        verbose_name = 'User'
-        verbose_name_plural = 'Users'
-
-
+        verbose_name = _('User')
+        verbose_name_plural = _('Users')
 # ---------------------------
 # 2. University
 # ---------------------------
@@ -63,6 +45,16 @@ class University(models.Model):
     def __str__(self):
         return self.name
 
+class Wishlist(models.Model):
+    """
+    A model to represent a user's personal wishlist of universities.
+    A user can only have one wishlist.
+    """
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='wishlist')
+    universities = models.ManyToManyField(University, blank=True, related_name='wishlisted_by')
+
+    def __str__(self):
+        return f"Wishlist for {self.user.username}"
 
 # ---------------------------
 # 3. University Courses Offered
