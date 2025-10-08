@@ -13,3 +13,5 @@ _pycache_/
 
 # environment variables
 .env
+
+media
