@@ -20,6 +20,8 @@ from .models import University, Wishlist
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 import json
+from django.shortcuts import render, get_object_or_404
+from .models import Alumni, University
 
 
 
@@ -205,3 +207,22 @@ def remove_from_wishlist(request):
         return JsonResponse({'success': False, 'message': 'Invalid JSON.'}, status=400)
     except Exception as e:
         return JsonResponse({'success': False, 'message': str(e)}, status=500)
+
+
+def alumni_list_view(request, university_pk):
+    # CORRECTED: Changed 'College' to 'University'
+    university = get_object_or_404(University, pk=university_pk)
+
+    alumni_list = university.alumni.all()
+    context = {
+        'university': university,
+        'alumni_list': alumni_list
+    }
+    return render(request, 'alumni_list.html', context)
+
+def alumni_detail_view(request, alumnus_pk):
+    alumnus = get_object_or_404(Alumni, pk=alumnus_pk)
+    context = {
+        'alumnus': alumnus
+    }
+    return render(request, 'alumni_detail.html', context)

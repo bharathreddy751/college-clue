@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notable Alumni - {{ university.name }}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #e0e0e0;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 30%, #0f3460 70%, #533483 100%);
+            min-height: 100vh;
+        }
+        .nav-bar {
+            background-color: rgba(30, 41, 59, 0.95);
+            backdrop-filter: blur(8px);
+        }
+        .alumni-card {
+            background: #2d3748;
+            border-radius: 0.75rem;
+            border: 1px solid #4a5568;
+            overflow: hidden;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            color: #e0e0e0;
+        }
+        .alumni-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.3);
+        }
+        .alumni-card img {
+            border-bottom: 2px solid #667eea;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="nav-bar h-16 flex items-center justify-between px-4 sm:px-6 lg:px-8 shadow-md">
+        <h1 class="text-2xl font-bold text-white">CollegeClue</h1>
+    </nav>
+
+    <div class="max-w-6xl mx-auto px-4 py-8">
+        <h2 class="text-4xl font-extrabold text-white text-center mb-8">Notable Alumni of {{ university.name }}</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {% for alumnus in alumni_list %}
+                <a href="{% url 'alumni_detail' alumnus.pk %}" class="alumni-card block">
+                    <img src="{{ alumnus.image.url }}" alt="{{ alumnus.name }}" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white">{{ alumnus.name }}</h3>
+                        <p class="text-gray-400 mt-1">{{ alumnus.current_position }}</p>
+                    </div>
+                </a>
+            {% empty %}
+                <p class="text-gray-400 text-center col-span-full">No notable alumni have been listed for this university yet.</p>
+            {% endfor %}
+        </div>
+
+        <div class="text-center mt-12">
+            <a href="{% url 'university_detail' university.pk %}" class="inline-block bg-indigo-500 text-white font-bold py-3 px-8 rounded-lg hover:bg-indigo-600 transition-colors">
+                ← Back to University Details
+            </a>
+        </div>
+    </div>
+
+</body>
+</html>

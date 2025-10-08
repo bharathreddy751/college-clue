@@ -4,7 +4,10 @@ from .models import *
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from .models import User, Wishlist, University
 #from .models import StudentRegistration  # adjust model name if different
+from .models import Alumni # <-- Import the Alumni model
 
+# ... your other admin registrations ...
+admin.site.register(Alumni)
 
 admin.site.register(User)
 # admin.site.register(CourseCategory)

@@ -20,6 +20,9 @@ path('heartbeat/', views.heartbeat, name='heartbeat'),
     path('my-wishlists/', views.my_wishlists, name='my_wishlists'),
     path('wishlist/add/', views.add_to_wishlist, name='add_to_wishlist'),
     path('wishlist/remove/', views.remove_from_wishlist, name='remove_from_wishlist'),
-    ]
+    path('university/<int:university_pk>/alumni/', views.alumni_list_view, name='alumni_list'),
+    path('alumni/<int:alumnus_pk>/', views.alumni_detail_view, name='alumni_detail'),
+
+]
 
 

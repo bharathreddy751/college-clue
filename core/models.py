@@ -25,7 +25,7 @@ class User(AbstractUser):
 class University(models.Model):
     name = models.CharField(max_length=100)
     accreditation = models.CharField(max_length=200, blank=True)
-    alumni = models.TextField(blank=True)
+    # alumni = models.TextField(blank=True)
     average_salary = models.CharField(max_length=50, blank=True)
     campus_size = models.CharField(max_length=50, blank=True)
     tuition = models.CharField(max_length=100, blank=True)
@@ -41,6 +41,7 @@ class University(models.Model):
     longitude = models.FloatField(null=True, blank=True)
     password = models.CharField(max_length=50, blank=True)
     study_abroad_programs = models.BooleanField(default=False)
+    registration_deadline = models.DateField(null=True, blank=True, help_text="The last date for student registration.")
 
     def __str__(self):
         return self.name
@@ -216,3 +217,22 @@ class Registration(models.Model):
 
     def __str__(self):
         return f"{self.first_name} - {self.university.name}"
+
+
+
+
+class Alumni(models.Model):
+    # CORRECTED: Changed 'College' to 'University' to match your actual model name
+    university = models.ForeignKey('University', on_delete=models.CASCADE, related_name='alumni')
+
+    name = models.CharField(max_length=100)
+    graduation_year = models.IntegerField()
+    image = models.ImageField(upload_to='alumni_photos/')
+    current_company = models.CharField(max_length=100, blank=True)
+    current_position = models.CharField(max_length=100, blank=True)
+    testimonial = models.TextField(blank=True)
+    linkedin_profile_url = models.URLField(blank=True)
+
+    def __str__(self):
+        # CORRECTED: Changed 'university.clg_name' to 'university.name'
+        return f"{self.name} ({self.university.name})"
