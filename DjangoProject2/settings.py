@@ -209,7 +209,7 @@ if not SECRET_KEY and not IS_PRODUCTION:
     # Use a fallback key for local development if SECRET_KEY is not set
     SECRET_KEY = 'django-insecure-fallback-key-for-dev-only'
 
-DEBUG = not IS_PRODUCTION
+DEBUG = True
 
 # --- Host Configuration ---
 ALLOWED_HOSTS = []
